@@ -37,7 +37,7 @@ function Stocks() {
         valueFormatter: (params) => params.value.Quantity,
       },
     {
-      field: "Shelf",
+      field: "Shelfproduct",
       headerName: "Shelf",
       width: 150,
       valueFormatter: (params) => params.value.Shelf_name,

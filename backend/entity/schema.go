@@ -115,8 +115,8 @@ type Lot struct {
 
 type Shelfproduct struct {
 	gorm.Model
-	Shelfproduct_name string
-	Stock             []Stock `gorm:"foreignKey:ShelfproductID"`
+	Shelf_name string
+	Stock      []Stock `gorm:"foreignKey:ShelfproductID"`
 }
 
 type Stock struct {

@@ -71,7 +71,7 @@ func main() {
 			router.DELETE("/products/:id", controller.DeleteProduct)
 
 			// Lot Routes
-			router.GET("/lots", controller.ListLots)
+			router.GET("/lots", controller.ListLot)
 			router.GET("/lot/:id", controller.GetLot)
 			router.POST("/lots", controller.CreateLot)
 			router.PATCH("/lots", controller.UpdateLot)
