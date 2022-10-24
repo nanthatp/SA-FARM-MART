@@ -5,13 +5,19 @@ import { EmployeeInterface } from "./IEmployee";
 
 export interface StockInterface {
     ID?: number;
-    ProductID?: number;
-    Product_name?: ProductInterface;
-    Stock_quanitiy?: number;
+
     ShelfproductID?: number;
-    Shelfproduct_name?: ShelfproductInterface;
+    Shelfproduct?: ShelfproductInterface;
+
     LotID?: number;
-    Lot_number?: LotsInterface;
-    FirstName?: EmployeeInterface;
+    Lot?: LotsInterface;
+    
+    ProductID?: number;
+    Product?: ProductInterface;
+
     EmployeeID?: number;
+    Employee?: EmployeeInterface;
+
+    Stock_quantity?: number;
+
   }

@@ -128,7 +128,7 @@ function StockCreate() {
   async function submit() {
     let data = {
         ProductID: convertType(stock.ProductID),
-        Quantity: typeof stock.Stock_quanitiy === "string" ? parseInt(stock.Stock_quanitiy) : 0,
+        Quantity: typeof stock.Stock_quantity === "string" ? parseInt(stock?.Stock_quantity) : 0,
         LotID: convertType(stock.LotID),
         ShelfproductID: convertType(stock.ShelfproductID),
         EmployeeID: convertType(stock.EmployeeID),
@@ -236,17 +236,16 @@ function StockCreate() {
           </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-              <TextField
-                id="Quantity"
+            <TextField
+                id="Stock_quantity"
                 variant="outlined"
                 type="number"
-                size="medium"  
-                value={stock.Stock_quanitiy}
+                size="medium"
+                placeholder="Quantity"
+                value={stock.Stock_quantity || ""}
                 onChange={handleInputChange}
-                label="Quantity"
               />
             </FormControl>
-            
           </Grid>
           <Grid item xs={6}>
           <FormControl fullWidth >
@@ -297,7 +296,7 @@ function StockCreate() {
           <Grid item xs={12}>
             <Button
               component={RouterLink}
-              to="/products"
+              to="/stocks"
               variant="contained"
               color="inherit"
             >

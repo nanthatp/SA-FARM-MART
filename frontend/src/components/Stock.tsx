@@ -23,37 +23,37 @@ function Stocks() {
   };
 
   const columns: GridColDef[] = [
-    { field: "ID", headerName: "ID", width: 70 },
+    { field: "ID", headerName: "ID", width: 50 },
     {
-      field: "Product_name",
-      headerName: "Product",
-      width: 200,
-      valueFormatter: (params) => params.value.Product_name,
-    },
-    {
-        field: "Quantity",
-        headerName: "Quantity",
-        width: 100,
-        valueFormatter: (params) => params.value.Quantity,
-      },
-    {
-      field: "Shelf",
+      field: "Shelfproduct",
       headerName: "Shelf",
-      width: 150,
+      width: 250,
       valueFormatter: (params) => params.value.Shelf_name,
     },
     {
       field: "Lot",
       headerName: "Lot",
       width: 150,
-      valueFormatter: (params) => params.value.Lot_number,
+      valueFormatter: (params) => params.value.ID,
     },
-    { field: "Employee", 
-      headerName: "Employee", 
-      width: 150 ,
-      valueFormatter: (params) => params.value.FirstName + " " + params.value.LastName,
+    {
+      field: "Product",
+      headerName: "Product",
+      width: 150,
+      valueFormatter: (params) => params.value.Product_name,
     },
-
+    {
+      field: "Employee",
+      headerName: "Employee",
+      width: 150,
+      valueFormatter: (params) => params.value.FirstName +"  " + params.value.LastName,
+    },
+    {
+      field: "Stock_quantity",
+      headerName: "Quantity",
+      width: 150,
+      valueFormatter: (params) => params.value.Stock_quantity,
+    },
   ];
 
   return (
