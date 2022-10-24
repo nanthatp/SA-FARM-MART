@@ -180,7 +180,7 @@ function ProductCreate() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="success">
-            success
+        Successed!!
         </Alert>
       </Snackbar>
       <Snackbar
@@ -190,7 +190,7 @@ function ProductCreate() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="error">
-          unsuccess
+        Unsuccess!!
         </Alert>
       </Snackbar>
       <Paper>

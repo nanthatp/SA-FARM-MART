@@ -160,10 +160,10 @@ function App() {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                ระบบ Farm Mart
+                FARM MART
               </Typography>
               <Button color="inherit" onClick={signout}>
-                ออกจากระบบ
+                sign out
               </Button>
             </Toolbar>
           </AppBar>
