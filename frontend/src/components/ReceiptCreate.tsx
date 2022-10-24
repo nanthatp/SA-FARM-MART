@@ -238,7 +238,7 @@ function ReceiptCreate() {
                 ))}
               </Select>
             </FormControl>
-          </Grid>
+            </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
               <p>Payment Type</p>
@@ -247,7 +247,7 @@ function ReceiptCreate() {
                 value={receipts.PaymenttypeID + ""}
                 onChange={handleChange}
                 inputProps={{
-                  name: "PaymentTypeID",
+                  name: "PaymenttypeID",
                 }}
               >
                 <option aria-label="None" value="">
