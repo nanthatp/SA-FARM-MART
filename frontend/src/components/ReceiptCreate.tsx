@@ -282,10 +282,14 @@ function ReceiptCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={6}>
-          <FormControl fullWidth variant="outlined">
-              <p>Employee</p>      
+            <FormControl fullWidth variant="outlined">
+              <p>Employee</p>
+              <InputLabel id="demo-simple-select-label">Employee</InputLabel>      
               <Select
-                native              
+                native
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                label="Employee"                
                 value={receipts.EmployeeID + ""}
                 onChange={handleChange}
                 disabled
