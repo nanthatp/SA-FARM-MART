@@ -370,16 +370,16 @@ function MemberCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            {/* <Button
+            <Button
               component={RouterLink}
               to="/members"
               variant="contained"
               color="inherit"
             >
               BACK
-            </Button> */}
+            </Button>
             <Button
-              // style={{ float: "right" }}
+              style={{ float: "right" }}
               onClick={submit}
               variant="contained"
               color="primary"

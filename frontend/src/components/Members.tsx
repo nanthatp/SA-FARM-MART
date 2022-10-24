@@ -54,7 +54,7 @@ function Members() {
     { field: "Date_Of_Birth", 
       headerName: "Date Of Birth", 
       width: 250 ,
-      renderCell:(params) => moment(params.row.date_rec).format('YYYY-MM-DD')
+      renderCell:(params) => moment(params.row.Date_Of_Birth).format('YYYY-MM-DD')
     },
     {
       field: "Province",
