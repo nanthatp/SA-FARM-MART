@@ -25,6 +25,18 @@ function Stocks() {
   const columns: GridColDef[] = [
     { field: "ID", headerName: "ID", width: 50 },
     {
+      field: "Product",
+      headerName: "Product",
+      width: 150,
+      valueFormatter: (params) => params.value.Product_name,
+    },
+    {
+      field: "Stock_quantity",
+      headerName: "Quantity",
+      width: 150,
+      valueFormatter: (params) => params.value.Stock_quantity,
+    },
+    {
       field: "Shelfproduct",
       headerName: "Shelf",
       width: 250,
@@ -37,22 +49,10 @@ function Stocks() {
       valueFormatter: (params) => params.value.ID,
     },
     {
-      field: "Product",
-      headerName: "Product",
-      width: 150,
-      valueFormatter: (params) => params.value.Product_name,
-    },
-    {
       field: "Employee",
       headerName: "Employee",
       width: 150,
       valueFormatter: (params) => params.value.FirstName +"  " + params.value.LastName,
-    },
-    {
-      field: "Stock_quantity",
-      headerName: "Quantity",
-      width: 150,
-      valueFormatter: (params) => params.value.Stock_quantity,
     },
   ];
 

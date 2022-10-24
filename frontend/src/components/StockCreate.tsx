@@ -153,7 +153,7 @@ function StockCreate() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="success">
-            success
+          Successed!!
         </Alert>
       </Snackbar>
       <Snackbar
@@ -163,7 +163,7 @@ function StockCreate() {
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="error">
-          unsuccess
+          Unsuccess!!
         </Alert>
       </Snackbar>
       <Paper>
@@ -211,7 +211,7 @@ function StockCreate() {
             </FormControl>            
           </Grid>
           <Grid item xs={6}>
-          <FormControl fullWidth >
+          <FormControl fullWidth variant="outlined">
             <InputLabel id="demo-simple-select-label">Shelf</InputLabel>      
                 <Select
                   required
@@ -248,7 +248,7 @@ function StockCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={6}>
-          <FormControl fullWidth >
+          <FormControl fullWidth variant="outlined">
             <InputLabel id="demo-simple-select-label">Lot</InputLabel>      
                 <Select
                   required

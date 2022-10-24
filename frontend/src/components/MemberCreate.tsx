@@ -218,87 +218,96 @@ function MemberCreate() {
         <Divider />
         <Grid container spacing={3} sx={{ padding: 2 }}>
           <Grid item xs={12}>
-            <p>First Name</p>
             <FormControl fullWidth variant="outlined">
               <TextField
+                margin="normal"
+                required
+                fullWidth
                 id="FirstName"
-                variant="outlined"
                 type="string"
                 size="medium"
-                placeholder="Please enter a first name."
+                autoFocus
                 value={member.FirstName || ""}
                 onChange={handleInputChange}
+                label="First Name"
               />
             </FormControl>
           </Grid>
+
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
-              <p>Last Name</p>
               <TextField
+                margin="normal"
+                required
+                fullWidth
                 id="LastName"
-                variant="outlined"
                 type="string"
                 size="medium"
-                placeholder="Please enter a last name."
+                autoFocus
                 value={member.LastName || ""}
                 onChange={handleInputChange}
+                label="Last Name"
               />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
-              <p>Age</p>
               <TextField
+                margin="normal"
+                required
+                fullWidth
                 id="Age"
-                variant="outlined"
                 type="number"
                 size="medium"
-                placeholder="Please enter an age."
+                autoFocus
                 value={member.Age || ""}
                 onChange={handleInputChange}
+                label="Age"
               />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
-              <p>Gender</p>
-              <Select
-                native
-                value={member.GenderID + ""}
-                onChange={handleChange}
-                inputProps={{
-                  name: "GenderID",
+            <FormControl fullWidth >
+            <InputLabel id="demo-simple-select-label">Gender</InputLabel>      
+                <Select
+                  required
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Gender"
+                  native
+                  value={member.GenderID + ""}
+                  onChange={handleChange}
+                  inputProps={{
+                    name: "GenderID",
+                  }}                
+                >
+                  <option aria-label="None" value=""></option>
+                  {genders.map((item: GendersInterface) => (
+                    <option value={item.ID} key={item.ID}>
+                      {item.Gender}
+                    </option>
+                  ))}
+                </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+          <FormControl fullWidth variant="outlined">
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DatePicker
+                label="BirthDay"
+                value={member.Date_Of_Birth}
+                onChange={(newValue) => {
+                  setMember({
+                    ...member,
+                    Date_Of_Birth: newValue,
+                  });
                 }}
-              >
-                <option aria-label="None" value="">
-                    Please select a gender.
-                </option>
-                {genders.map((item: GendersInterface) => (
-                  <option value={item.ID} key={item.ID}>
-                    {item.Gender}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+          </FormControl>
           </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
-              <p>BirthDay</p>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  value={member.Date_Of_Birth}
-                  onChange={(newValue) => {
-                    setMember({
-                      ...member,
-                      Date_Of_Birth: newValue,
-                    });
-                  }}
-                  renderInput={(params) => <TextField {...params} />}
-                />
-              </LocalizationProvider>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
               <p>Province</p>
               <Select
@@ -319,8 +328,32 @@ function MemberCreate() {
                 ))}
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
+            <FormControl fullWidth >
+            <InputLabel id="demo-simple-select-label">Province</InputLabel>      
+                <Select
+                  required
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Province"
+                  native
+                  value={member.ProvinceID + ""}
+                  onChange={handleChange}
+                  inputProps={{
+                    name: "ProvinceID",
+                  }}                
+                >
+                  <option aria-label="None" value=""></option>
+                  {provinces.map((item: ProvinceInterface) => (
+                    <option value={item.ID} key={item.ID}>
+                      {item.Name}
+                    </option>
+                  ))}
+                </Select>
+            </FormControl>
+          </Grid>
+          {/* <Grid item xs={12}>
             <p>Telephone Number</p>
             <FormControl fullWidth variant="outlined">
               <TextField
@@ -331,6 +364,22 @@ function MemberCreate() {
                 placeholder="Please enter a Telephone number."
                 value={member.Telephone || ""}
                 onChange={handleInputChange}
+              />
+            </FormControl>
+          </Grid> */}
+          <Grid item xs={12}>
+            <FormControl fullWidth variant="outlined">
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="Telephone"
+                type="string"
+                size="medium"
+                autoFocus
+                value={member.Telephone || ""}
+                onChange={handleInputChange}
+                label="Telephone Number"
               />
             </FormControl>
           </Grid>
