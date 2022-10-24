@@ -22,6 +22,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import PeopleIcon from "@mui/icons-material/People";
 import BadgeIcon from '@mui/icons-material/Badge';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -101,9 +102,8 @@ const menu = [
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
   { name: "CartCreate", icon: <AddShoppingCartIcon />, path: "/cart/create" },
   { name: "Order", icon: < ViewListIcon/>, path: "/orders" },
-  { name: "R", icon: <ReceiptIcon />, path: "/receipts" },
-  { name: "RC", icon: <ReceiptIcon />, path: "/receipt/create" },
-  { name: "Test", icon: <ReceiptIcon />, path: "/test" },
+  { name: "Build Receipt", icon: <ReceiptIcon />, path: "/receipt/create" },
+  { name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
 ];
 
 function App() {

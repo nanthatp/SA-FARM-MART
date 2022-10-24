@@ -35,7 +35,7 @@ func GetLot(c *gin.Context) {
 }
 
 // GET /lots
-func ListLots(c *gin.Context) {
+func ListLot(c *gin.Context) {
 	var lot []entity.Lot
 	if err := entity.DB().Raw("SELECT * FROM lots").Scan(&lot).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

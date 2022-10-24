@@ -31,7 +31,6 @@ import { StockInterface } from "../interfaces/IStock";
 
 import {
   GetEmployeeByEID,
-  Products,
   GetProducts,
   GetLot,
   GetShelfproduct,
@@ -46,7 +45,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 
 function StockCreate() {
   const [lots, setLots] = useState<LotsInterface[]>([]);
-  const [shelfproducts, setShelfproducts] = useState<ShelfproductInterface[]>([]);
+  const [shelfs, setShelfs] = useState<ShelfproductInterface[]>([]);
   const [employees, setEmployees] = useState<EmployeeInterface>();
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [stock, setStock] = useState<StockInterface>({});
@@ -93,7 +92,7 @@ function StockCreate() {
   const getShelfproduct = async () => {
     let res = await GetShelfproduct();
     if (res) {
-      setShelfproducts(res);
+      setShelfs(res);
     }
   };
 
@@ -131,13 +130,13 @@ function StockCreate() {
         ProductID: convertType(stock.ProductID),
         Quantity: typeof stock.Stock_quanitiy === "string" ? parseInt(stock.Stock_quanitiy) : 0,
         LotID: convertType(stock.LotID),
-        ShelfID: convertType(stock.ShelfproductID),
+        ShelfproductID: convertType(stock.ShelfproductID),
         EmployeeID: convertType(stock.EmployeeID),
 
         
     };
     console.log(data)
-    let res = await Products(data);
+    let res = await Stocks(data);
     if (res) {
       setSuccess(true);
     } else {
@@ -223,11 +222,11 @@ function StockCreate() {
                   value={stock.ShelfproductID + ""}
                   onChange={handleChange}
                   inputProps={{
-                    name: "ShelfID",
+                    name: "ShelfproductID",
                   }}                
                 >
                   <option aria-label="None" value=""></option>
-                  {shelfproducts.map((item: ShelfproductInterface) => (
+                  {shelfs.map((item: ShelfproductInterface) => (
                     <option value={item.ID} key={item.ID}>
                       {item.Shelf_name}
                     </option>
@@ -250,30 +249,28 @@ function StockCreate() {
             
           </Grid>
           <Grid item xs={6}>
-            <FormControl fullWidth variant="outlined">
-              <InputLabel id="demo-simple-select-label">Lot</InputLabel>      
-              <Select                
-                // required
-                // fullWidth
-                // autoFocus
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="ManufacturerLot"
-                //native
-                value={stock.LotID + ""}
-                onChange={handleChange}
-                inputProps={{
-                  name: "LotID",
-                }}
-              >
-                <option aria-label="None" value=""></option>
-                {lots.map((item: LotsInterface) => (
-                  <option value={item.ID} key={item.ID}>
-                    {item.ID}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
+          <FormControl fullWidth >
+            <InputLabel id="demo-simple-select-label">Lot</InputLabel>      
+                <Select
+                  required
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="LotID"
+                  native
+                  value={stock.LotID + ""}
+                  onChange={handleChange}
+                  inputProps={{
+                    name: "LotID",
+                  }}                
+                >
+                  <option aria-label="None" value=""></option>
+                  {lots.map((item: LotsInterface) => (
+                    <option value={item.ID} key={item.ID}>
+                      {item.ID}
+                    </option>
+                  ))}
+                </Select>
+            </FormControl>  
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">

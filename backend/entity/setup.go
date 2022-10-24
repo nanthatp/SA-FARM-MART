@@ -646,17 +646,17 @@ func SetupDatabase() {
 
 	// Shelf Data
 	shelf_A := Shelfproduct{
-		Shelfproduct_name: "Shelf_A",
+		Shelf_name: "Shelf_A",
 	}
 	db.Model(&Shelfproduct{}).Create(&shelf_A)
 
 	shelf_B := Shelfproduct{
-		Shelfproduct_name: "Shelf_B",
+		Shelf_name: "Shelf_B",
 	}
 	db.Model(&Shelfproduct{}).Create(&shelf_B)
 
 	shelf_C := Shelfproduct{
-		Shelfproduct_name: "Shelf_C",
+		Shelf_name: "Shelf_C",
 	}
 	db.Model(&Shelfproduct{}).Create(&shelf_C)
 

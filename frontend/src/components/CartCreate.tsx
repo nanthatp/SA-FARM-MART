@@ -36,7 +36,7 @@ function CartCreate(){
   const [members, setMembers] = useState<MemberInterface[]>([]);
   const [products, setProducts] = useState<ProductInterface[]>([]);
   const [carts, setCarts] = useState<CartInterface>({});
-  const [orders, setOrders] = useState<OrderInterface>();
+  const [orders, setOrders] = useState<OrderInterface>({});
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -77,6 +77,7 @@ function CartCreate(){
     const name = event.target.name as keyof typeof carts;
     setCarts({
       ...carts,
+
       [name]: event.target.value,
     });
 
@@ -180,7 +181,7 @@ const getEmployees = async () => {
   async function submit() {
     let data = {
       Telephone: carts.Telephone?? "",
-      ProducID:convertType(orders?.ProductID),
+      ProductID: convertType(carts.ProductID),
       Quantity:typeof orders?.Product_quantity ==="string"?parseInt(orders.Product_quantity):0,
     };
     console.log(data)
@@ -254,7 +255,7 @@ const getEmployees = async () => {
                 >
                     <option aria-label="None" value=""></option>
                     {members.map((item: MemberInterface) => (
-                        <option value={item.ID} key={item.ID}>
+                        <option value={item.ID} key={item.ID}> 
                         {item.Telephone}
                         </option>
                     ))}
@@ -262,26 +263,25 @@ const getEmployees = async () => {
             </FormControl>
           </Grid>
           <Grid item xs={6}>
-            <FormControl fullWidth variant="outlined" sx={{ paddingY: 2 }}>
-            <InputLabel id="InputLabeltel" sx={{ paddingY: 2 }}>Product</InputLabel>      
-                <Select
-                  labelId="Product"
-                  id="Product"
-                  label="Product"
-                  native
-                  value={orders?.ProductID + ""}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "ProductID",
-                  }}                
-                >
-                  <option aria-label="None" value=""></option>
-                  {products.map((item: ProductInterface) => (
-                    <option value={item.ID} key={item.ID}>
+            <FormControl fullWidth variant="outlined">
+              <p>Product</p>
+              <Select
+                native
+                value={carts.ProductID + ""}
+                onChange={handleChange}
+                inputProps={{
+                  name: "ProductID",
+                }}
+              >
+                <option aria-label="None" value="">
+                  Products
+                </option>
+                {products.map((item: ProductInterface) => (
+                  <option value={item.ID} key={item.ID}>
                     {item.Product_name}
-                    </option>
-                   ))}
-                </Select>
+                  </option>
+                ))}
+              </Select>
             </FormControl>
           </Grid>
           <Grid item xs={6} >

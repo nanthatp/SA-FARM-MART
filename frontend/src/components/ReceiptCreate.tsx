@@ -360,17 +360,17 @@ function ReceiptCreate() {
           <Grid item xs={12}>
             <Button
               component={RouterLink}
-              to="/"
+              to="/receipts"
               variant="contained"
               color="inherit"
             >
-              BACK
+              Receipt Records
             </Button>
             <Button
               style={{ float: "right" }}
               onClick={submit}
               variant="contained"
-              color="primary"
+              color="success"
             >
               CREATE
             </Button>

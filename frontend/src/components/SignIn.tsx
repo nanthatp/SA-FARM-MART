@@ -71,7 +71,7 @@ function SignIn() {
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
           <Alert onClose={handleClose} severity="success">
-            เข้าสู่ระบบสำเร็จ
+          Signin Successfully!!
           </Alert>
         </Snackbar>
         <Snackbar
@@ -81,7 +81,7 @@ function SignIn() {
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
           <Alert onClose={handleClose} severity="error">
-            อีเมลหรือรหัสผ่านไม่ถูกต้อง
+            Invalid Email or Password
           </Alert>
         </Snackbar>
         
