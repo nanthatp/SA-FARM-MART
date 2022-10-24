@@ -283,13 +283,9 @@ function ReceiptCreate() {
           </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-              <p>Employee</p>
-              <InputLabel id="demo-simple-select-label">Employee</InputLabel>      
+              <p>Employee</p>    
               <Select
-                native
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Employee"                
+                native           
                 value={receipts.EmployeeID + ""}
                 onChange={handleChange}
                 disabled
@@ -365,17 +361,17 @@ function ReceiptCreate() {
           <Grid item xs={12}>
             <Button
               component={RouterLink}
-              to="/"
+              to="/receipts"
               variant="contained"
               color="inherit"
             >
-              BACK
+              Receipt Records
             </Button>
             <Button
               style={{ float: "right" }}
               onClick={submit}
               variant="contained"
-              color="primary"
+              color="success"
             >
               CREATE
             </Button>
