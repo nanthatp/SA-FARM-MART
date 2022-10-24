@@ -307,28 +307,6 @@ function MemberCreate() {
             </LocalizationProvider>
           </FormControl>
           </Grid>
-          {/* <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
-              <p>Province</p>
-              <Select
-                native
-                value={member.ProvinceID + ""}
-                onChange={handleChange}
-                inputProps={{
-                  name: "ProvinceID",
-                }}
-              >
-                <option aria-label="None" value="">
-                Please select a province.
-                </option>
-                {provinces.map((item: ProvinceInterface) => (
-                  <option value={item.ID} key={item.ID}>
-                    {item.Name}
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid> */}
           <Grid item xs={12}>
             <FormControl fullWidth >
             <InputLabel id="demo-simple-select-label">Province</InputLabel>      
@@ -353,20 +331,6 @@ function MemberCreate() {
                 </Select>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={12}>
-            <p>Telephone Number</p>
-            <FormControl fullWidth variant="outlined">
-              <TextField
-                id="Telephone"
-                variant="outlined"
-                type="string"
-                size="medium"
-                placeholder="Please enter a Telephone number."
-                value={member.Telephone || ""}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-          </Grid> */}
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
               <TextField
@@ -406,16 +370,16 @@ function MemberCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Button
+            {/* <Button
               component={RouterLink}
               to="/members"
               variant="contained"
               color="inherit"
             >
               BACK
-            </Button>
+            </Button> */}
             <Button
-              style={{ float: "right" }}
+              // style={{ float: "right" }}
               onClick={submit}
               variant="contained"
               color="primary"
