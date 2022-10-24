@@ -40,6 +40,9 @@ function CartCreate(){
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+
+  const [ list, setList] = useState([]);
+  const [value, setValue] = useState("");
   
   const apiUrl = "http://localhost:8080";
   
