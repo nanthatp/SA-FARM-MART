@@ -282,14 +282,10 @@ function ReceiptCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={6}>
-            <FormControl fullWidth variant="outlined">
-              <p>Employee</p>
-              <InputLabel id="demo-simple-select-label">Employee</InputLabel>      
+          <FormControl fullWidth variant="outlined">
+              <p>Employee</p>      
               <Select
-                native
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                label="Employee"                
+                native              
                 value={receipts.EmployeeID + ""}
                 onChange={handleChange}
                 disabled
@@ -297,7 +293,6 @@ function ReceiptCreate() {
                   name: "EmployeeID",
                 }}
               >
-                <option aria-label="None" value=""></option>
                 <option value={employees?.ID} key={employees?.ID}>
                   {employees?.FirstName} {employees?.LastName}
                 </option>    
