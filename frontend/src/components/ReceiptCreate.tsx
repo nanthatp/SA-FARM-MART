@@ -238,7 +238,7 @@ function ReceiptCreate() {
                 ))}
               </Select>
             </FormControl>
-          </Grid>
+            </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
               <p>Payment Type</p>
@@ -247,7 +247,7 @@ function ReceiptCreate() {
                 value={receipts.PaymenttypeID + ""}
                 onChange={handleChange}
                 inputProps={{
-                  name: "PaymentTypeID",
+                  name: "PaymenttypeID",
                 }}
               >
                 <option aria-label="None" value="">
@@ -284,8 +284,7 @@ function ReceiptCreate() {
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
               <p>Employee</p>  
-              <Select
-                native               
+              <Select               
                 value={receipts.EmployeeID + ""}
                 onChange={handleChange}
                 disabled
@@ -293,7 +292,6 @@ function ReceiptCreate() {
                   name: "EmployeeID",
                 }}
               >
-                <option aria-label="None" value=""></option>
                 <option value={employees?.ID} key={employees?.ID}>
                   {employees?.FirstName} {employees?.LastName}
                 </option>    
