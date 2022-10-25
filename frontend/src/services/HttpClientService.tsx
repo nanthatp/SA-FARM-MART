@@ -190,27 +190,29 @@ async function GetReceipts() {
   return res;
 }
 
-// async function GetPaymenttypes() {
-//   const requestOptions = {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//   };
 
-//   let res = await fetch(`${apiUrl}/paymenttypes`, requestOptions)
-//     .then((response) => response.json())
-//     .then((res) => {
-//       if (res.data) {
-//         return res.data;
-//       } else {
-//         return false;
-//       }
-//     });
+async function GetPaymenttypes() {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
+  };
 
-//   return res;
-// }
+  let res = await fetch(`${apiUrl}/paymenttypes`, requestOptions)
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.data) {
+        return res.data;
+      } else {
+        return false;
+      }
+    });
+
+  return res;
+}
+
 
 // async function GetGenders() {
 //   const requestOptions = {
@@ -580,7 +582,7 @@ export {
   Products,
   GetStocks, GetLot, GetShelfproduct, Stocks,
   GetReceipts, GetCarts, 
-  // GetPaymenttypes, 
+  GetPaymenttypes,
   // CreateReceipt,
   Receipts,
   CreateEmployee, 

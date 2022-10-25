@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link as RouterLink } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { ReceiptInterface } from "../interfaces/IReceipt";
 import { GetReceipts } from "../services/HttpClientService";
+import Paper from "@mui/material/Paper/Paper";
+import Box from "@mui/material/Box/Box";
 
 function Receipts() {
   const [receipts, setReceipts] = useState<ReceiptInterface[]>([]);
@@ -23,99 +22,80 @@ function Receipts() {
   };
 
   const columns: GridColDef[] = [
-    { field: "ID", headerName: "ID", width: 50 },
+    { field: "ID", headerName: "NO", width: 30 },
     {
-      field: "ReceiptTime",
-      headerName: "Receipt Time",
-      width: 250,
-      valueFormatter: (params) => params.value.ReceiptTime,
+      field: "Cart",
+      headerName: "Cart Number",
+      width: 135,
+      valueFormatter: (params) => params.value.ID,
     },
     {
       field: "ReceiptSum",
-      headerName: "Receipt Sum",
+      headerName: "Net Total (THB)",
       width: 150,
       valueFormatter: (params) => params.value.ReceiptSum,
     },
     {
+      field: "Paymenttype",
+      headerName: "Payment Method",
+      width: 140,
+      valueFormatter: (params) => params.value.Paymenttype,
+    },
+    {
+      field: "Member",
+      headerName: "Client",
+      width: 150,
+      valueFormatter: (params) => params.value.FirstName + " " + params.value.LastName,
+    },
+    {
       field: "ReceiptPaymentAmount",
-      headerName: "Receipt Payment Amount",
+      headerName: "Received(THB)",
       width: 150,
       valueFormatter: (params) => params.value.ReceiptPaymentAmount,
     },
     {
-      field: "ReceiptChange",
-      headerName: "Receipt Change",
-      width: 150,
-      valueFormatter: (params) => params.value.ReceiptChange,
-    },
-    {
-      field: "Paymenttype",
-      headerName: "Paymenttype",
-      width: 150,
-      valueFormatter: (params) => params.value.Paymenttype,
-    },
-    {
-      field: "Cart",
-      headerName: "Cart",
-      width: 150,
-      valueFormatter: (params) => params.value.ID,
-    },
-    {
       field: "Employee",
-      headerName: "Employee",
+      headerName: "Cashier",
       width: 150,
       valueFormatter: (params) => params.value.FirstName + " " + params.value.LastName,
     },
     {
-      field: "Member",
-      headerName: "Member",
-      width: 150,
-      valueFormatter: (params) => params.value.FirstName + " " + params.value.LastName,
+      field: "ReceiptTime",
+      headerName: "Time Issued",
+      width: 300,
+      valueFormatter: (params) => params.value.ReceiptTime,
     },
   ];
 
   return (
     <div>
-      <Container maxWidth="md">
+      <Paper>
         <Box
-          display="flex"
+          display="flexr"
           sx={{
             marginTop: 2,
           }}
-        >
-          <Box flexGrow={1}>
+        ><Box sx={{ paddingX: 1, paddingY: 1, }}>
             <Typography
               component="h2"
               variant="h6"
               color="primary"
               gutterBottom
-            >
-              Receipt/Invoice recods
+            >RECEIPT RECORDS
             </Typography>
-          </Box>
-          <Box>
-            <Button
-              component={RouterLink}
-              to="/"
-              variant="contained"
-              color="inherit"
-            >
-              BACK
-            </Button>
+            <Container maxWidth="xl">
+              <div style={{ height: 600, width: "100%", marginTop: "10px" }}>
+                <DataGrid
+                  rows={receipts}
+                  getRowId={(row) => row.ID}
+                  columns={columns}
+                  pageSize={30}
+                  rowsPerPageOptions={[9]}
+              /></div>
+            </Container>
           </Box>
         </Box>
-        <div style={{ height: 400, width: "100%", marginTop: "20px" }}>
-          <DataGrid
-            rows={receipts}
-            getRowId={(row) => row.ID}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-          />
-        </div>
-      </Container>
+      </Paper>
     </div>
   );
-}
-
-export default Receipts;
+}export default Receipts;
