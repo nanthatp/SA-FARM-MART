@@ -332,8 +332,6 @@ function ProductCreate() {
               onClick={submit}
               variant="contained"
               color="primary"
-              component={RouterLink}
-              to="/products"
             >
               SAVE
             </Button>

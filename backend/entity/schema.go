@@ -102,8 +102,6 @@ type Product struct {
 	Manufacturer   Manufacturer `gorm:"references:id"`
 	EmployeeID     *uint
 	Employee       Employee `gorm:"references:id"`
-
-	//Stocks []Stock `gorm:"foreignKey:StockID"`
 }
 
 // -------------------------------------------------------------------
@@ -150,8 +148,6 @@ type Order struct {
 	Product_quantity int8
 	CartID           *uint
 	Cart             Cart `gorm:"references:id"`
-
-	//Receipts      []Receipt `gorm:"foreignKey:PaymentTypeID`
 }
 
 // ============================================================
