@@ -99,17 +99,10 @@ const menu = [
   { name: "Member", icon: <PeopleIcon />, path: "/members" },
   { name: "Product", icon: <WidgetsIcon />, path: "/products" },
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
-<<<<<<< HEAD
   { name: "Cart", icon: <AddShoppingCartIcon />, path: "/cart" },
   { name: "Order", icon: < ViewListIcon/>, path: "/order" },
   { name: "Build Receipt", icon: <ReceiptIcon />, path: "/receipt/create" },
   { name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
-=======
-  { name: "CartCreate", icon: <AddShoppingCartIcon />, path: "/cart/create" },
-  { name: "Order", icon: < ViewListIcon/>, path: "/orders" },
-  { name: "Receipt Management", icon: <ReceiptIcon />, path: "/receipt/create" },
-  //{ name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
->>>>>>> 231283044cf74ed7ead0852e4a2b74a2e4847013
 ];
 
 function App() {
