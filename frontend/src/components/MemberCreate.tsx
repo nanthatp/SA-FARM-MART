@@ -291,7 +291,7 @@ function MemberCreate() {
           <FormControl fullWidth >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
-                label="BirthDay"
+                label="Birthbay"
                 value={member.Date_Of_Birth}
                 onChange={(newValue) => {
                   setMember({
