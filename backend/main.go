@@ -3,7 +3,8 @@ package main
 import (
 	"github.com/JRKs1532/sa-65-example/controller"
 	"github.com/JRKs1532/sa-65-example/entity"
-	"github.com/JRKs1532/sa-65-example/middlewares"
+
+	//"github.com/JRKs1532/sa-65-example/middlewares"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,7 +19,7 @@ func main() {
 	router := r.Group("/")
 	{
 
-		router.Use(middlewares.Authorizes())
+		//router.Use(middlewares.Authorizes())
 		{
 			// Employee Routes
 			router.GET("/employees", controller.ListEmployees)
@@ -93,17 +94,17 @@ func main() {
 
 			// cart Routes
 			router.GET("/carts", controller.ListCarts)
-			router.GET("/cart/:id", controller.GetCart)
-			router.POST("/carts", controller.CreateCart)
-			router.PATCH("/carts", controller.UpdateCart)
-			router.DELETE("/carts/:id", controller.DeleteCart)
+			router.GET("/cart/:id", controller.GetCarts)
+			router.POST("/carts", controller.Cart)
+			router.PATCH("/carts", controller.UpdateCarts)
+			router.DELETE("/carts/:id", controller.DeleteCarts)
 
 			// order Routes
-			router.GET("/orders", controller.ListOrders)
-			router.GET("/order/:id", controller.GetOrder)
-			router.POST("/orders", controller.CreateOrder)
-			router.PATCH("/orders", controller.UpdateOrder)
-			router.DELETE("/orders/:id", controller.DeleteOrder)
+			router.GET("/orders", controller.ListOrder)
+			//router.GET("/order/:id", controller.GetOrders)
+			router.POST("/orders", controller.Order)
+			// router.PATCH("/orders", controller.UpdateOrder)
+			// router.DELETE("/orders/:id", controller.DeleteOrder)
 
 			// Paymenttype Routes
 			router.GET("/paymenttypes", controller.ListPaymenttypes)
@@ -121,10 +122,10 @@ func main() {
 
 		}
 	}
-	// Signup User Route
-	r.POST("/signup", controller.CreateEmployee)
-	// login User Route
-	r.POST("/login", controller.Login)
+	// // Signup User Route
+	// r.POST("/signup", controller.CreateEmployee)
+	// // login User Route
+	// r.POST("/login", controller.Login)
 
 	// Run the server go run main.go
 	r.Run("localhost: " + PORT)

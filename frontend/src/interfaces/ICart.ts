@@ -1,6 +1,6 @@
 import { EmployeeInterface } from "./IEmployee";
 import { MemberInterface } from "./IMember";
-import { ProductInterface } from "./IProduct";
+
 
 
 export interface CartInterface {
@@ -11,6 +11,4 @@ export interface CartInterface {
   Member?: MemberInterface;
   Telephone?: string,
   Telephone_num?: MemberInterface,
-  ProductID?: number,
-  Product_name?: ProductInterface,
 }
