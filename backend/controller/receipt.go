@@ -51,7 +51,6 @@ func CreateReceipt(c *gin.Context) {
 		ReceiptTime:          receipt.ReceiptTime,          // ตั้งค่าฟิลด์ ReceiptTime
 		ReceiptSum:           receipt.ReceiptSum,           // ตั้งค่าฟิลด์ ReceiptSum
 		ReceiptPaymentAmount: receipt.ReceiptPaymentAmount, // ตั้งค่าฟิลด์ ReceiptPaymentAmount
-		ReceiptChange:        receipt.ReceiptChange,        // ตั้งค่าฟิลด์ ReceiptChange
 		Paymenttype:          paymenttype,                  //โยงความสัมพันธ์กับ Entity Paymenttype
 		Cart:                 cart,                         // โยงความสัมพันธ์กับ Entity Cart
 		Employee:             employee,                     // โยงความสัมพันธ์กับ Entity Employee
@@ -78,7 +77,7 @@ func GetReceipt(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": receipt})
 }
 
-// GET /receipts
+// GET /receipts (ดึงข้อมูลทั้งหมดของ receipt)
 func ListReceipts(c *gin.Context) {
 	var receipts []entity.Receipt
 	if err := entity.DB().Preload("Paymenttype").Preload("Cart").Preload("Employee").Preload("Member").Raw("SELECT * FROM receipts").Find(&receipts).Error; err != nil {

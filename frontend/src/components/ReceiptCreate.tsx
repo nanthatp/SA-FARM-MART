@@ -24,11 +24,11 @@ import { EmployeeInterface } from "../interfaces/IEmployee";
 
 import {
   GetEmployeeByEID,
+  GetPaymenttypes,
   GetCarts,
   GetMembers,
   Receipts,
 } from "../services/HttpClientService";
-import { InputLabel } from "@mui/material";
 
 const apiUrl = "http://localhost:8080";
 
@@ -38,28 +38,6 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-
-async function GetPaymenttypes() {
-  const requestOptions = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-    },
-  };
-
-  let res = await fetch(`${apiUrl}/paymenttypes`, requestOptions)
-    .then((response) => response.json())
-    .then((res) => {
-      if (res.data) {
-        return res.data;
-      } else {
-        return false;
-      }
-    });
-
-  return res;
-}
 
 function ReceiptCreate() {
   const [paymenttypes, setPaymentTypes] = useState<PaymentTypeInterface[]>([]);
@@ -142,7 +120,7 @@ function ReceiptCreate() {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     getEmployees()
     getCarts();
     getMembers();
@@ -155,24 +133,28 @@ function ReceiptCreate() {
   };
 
   async function submit() {
-    let data = {
-      ReceiptSum: typeof receipts.ReceiptSum === "string" ? parseFloat(receipts?.ReceiptSum) : 0,
-      ReceiptPaymentAmount: typeof receipts.ReceiptPaymentAmount === "string" ? parseFloat(receipts?.ReceiptPaymentAmount) : 0,
-      ReceiptChange: typeof receipts.ReceiptChange === "string" ? parseFloat(receipts?.ReceiptChange) : 0,
-      ReceiptTime: receipts.ReceiptTime,
-      PaymentTypeID: convertType(receipts.PaymenttypeID),
-      CartID: convertType(receipts.CartID),
-      MemberID: convertType(receipts.MemberID),
-      EmployeeID: convertType(receipts.EmployeeID),
-    };
-
-    let res = await Receipts(data);
-    if (res) {
-      setSuccess(true);
-    } else {
-      setError(true);
-    }
+    if(receipts.MemberID == receipts.CartID){
+      let data = {
+        ReceiptSum: typeof receipts.ReceiptSum === "string" ? parseFloat(receipts?.ReceiptSum) : 0,
+        ReceiptPaymentAmount: typeof receipts.ReceiptPaymentAmount === "string" ? parseFloat(receipts?.ReceiptPaymentAmount) : 0,
+        ReceiptChange: typeof receipts.ReceiptChange === "string" ? parseFloat(receipts?.ReceiptChange) : 0,
+        ReceiptTime: receipts.ReceiptTime,
+        PaymentTypeID: convertType(receipts.PaymenttypeID),
+        CartID: convertType(receipts.CartID),
+        MemberID: convertType(receipts.MemberID),
+        EmployeeID: convertType(receipts.EmployeeID),
+      };
+  
+      let res = await Receipts(data);
+      if (res) {
+        setSuccess(true);
+      } else {
+        setError(true);
+      }
+    }else{setError(true);}
   }
+
+//=====================================================================================
 
   return (
     <Container maxWidth="md">
@@ -203,14 +185,13 @@ function ReceiptCreate() {
             marginTop: 2,
           }}
         >
-          <Box sx={{ paddingX: 2, paddingY: 1, }}>
+          <Box sx={{ paddingX: 1, paddingY: 1, }}>
             <Typography
               component="h1"
               variant="h6"
               color="primary"
               gutterBottom
-            >
-              RECEIPT ISSUSED
+            >RECEIPT ISSUSED
             </Typography>
           </Box>
         </Box>
@@ -226,10 +207,9 @@ function ReceiptCreate() {
                 inputProps={{
                   name: "CartID",
                 }}
-                
               >
                 <option aria-label="None" value="">
-                  Choose Your Order
+                  choose cart ID
                 </option>
                 {carts.map((item: CartInterface) => (
                   <option value={item.ID} key={item.ID}>
@@ -263,7 +243,7 @@ function ReceiptCreate() {
           </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-              <p>Member</p>
+              <p>(Cart)Member</p>
               <Select
                 native
                 value={receipts.MemberID + ""}
@@ -274,10 +254,10 @@ function ReceiptCreate() {
               >
                 <option aria-label="None" value=""> choose The Member</option>
                 {carts.map((item: CartInterface) => (
-                  <option value= {item.ID} key= {item.ID}> 
-                  {item.Member?.FirstName} {item.Member?.LastName} </option>
+                  <option value={item.ID} key={item.ID}>
+                    ({item.ID}) {item.Member?.FirstName} {item.Member?.LastName}
+                  </option>
                 ))}
-               
               </Select>
             </FormControl>
           </Grid>
@@ -324,7 +304,7 @@ function ReceiptCreate() {
                 variant="outlined"
                 type="number"
                 size="medium"
-                placeholder="Enter Net Total"
+                placeholder="enter net total"
                 value={receipts.ReceiptSum || ""}
                 onChange={handleInputChange}
               />
@@ -334,38 +314,25 @@ function ReceiptCreate() {
             <FormControl fullWidth variant="outlined">
             <p>Payment Amount*</p>
             <TextField
+                required
                 id="ReceiptPaymentAmount"
                 variant="outlined"
                 type="number"
                 size="medium"
-                placeholder="Enter Payment Amount"
+                placeholder="enter payment amount"
                 value={receipts.ReceiptPaymentAmount || ""}
                 onChange={handleInputChange}
               />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
-            <p>Change</p>
-            <TextField
-                id="ReceiptChange"
-                variant="outlined"
-                type="number"
-                size="medium"
-                placeholder="Enter Change"
-                value={receipts.ReceiptChange || ""}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              component={RouterLink}
-              to="/receipts"
-              variant="contained"
-              color="inherit"
+          <Button
+            component={RouterLink}
+            to="/receipts"
+            variant="contained"
+            color="inherit"
             >
-              Receipt Records
+              RECEIPT RECORDS
             </Button>
             <Button
               style={{ float: "right" }}

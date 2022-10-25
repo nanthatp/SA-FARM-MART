@@ -167,7 +167,6 @@ type Receipt struct {
 	ReceiptTime          time.Time
 	ReceiptSum           float32
 	ReceiptPaymentAmount float32
-	ReceiptChange        float32
 
 	PaymenttypeID *uint
 	Paymenttype   Paymenttype `gorm:"references:id"`

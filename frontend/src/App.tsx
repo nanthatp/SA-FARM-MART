@@ -101,8 +101,8 @@ const menu = [
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
   { name: "CartCreate", icon: <AddShoppingCartIcon />, path: "/cart/create" },
   { name: "Order", icon: < ViewListIcon/>, path: "/orders" },
-  { name: "Build Receipt", icon: <ReceiptIcon />, path: "/receipt/create" },
-  { name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
+  { name: "Receipt Management", icon: <ReceiptIcon />, path: "/receipt/create" },
+  //{ name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
 ];
 
 function App() {

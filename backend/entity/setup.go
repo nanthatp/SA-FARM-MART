@@ -763,14 +763,13 @@ func SetupDatabase() {
 
 	//Receipt
 	db.Model(&Receipt{}).Create(&Receipt{
-		ReceiptTime: time.Now(),
-		//ReceiptSum:			()
-		//ReceiptPaymentAmount float32
-		//ReceiptChange         float32
-		Paymenttype: cash,
-		Cart:        cart1,
-		Employee:    cosmo,
-		Member:      lisa,
+		ReceiptTime:          time.Now(),
+		ReceiptSum:           145.00,
+		ReceiptPaymentAmount: 150.00,
+		Paymenttype:          cash,
+		Cart:                 cart1,
+		Employee:             cosmo,
+		Member:               lisa,
 	})
 	//===============================================
 	//

@@ -6,16 +6,23 @@ import { MemberInterface } from "./IMember";
 
 export interface ReceiptInterface {
   ID?:          number;
-  ReceiptTime?: Date | null;
-  ReceiptSum?:   number;
-  ReceiptPaymentAmount?: number;
-  ReceiptChange?:        number;
-  PaymenttypeID?: number;
-  Paymenttype?:   PaymentTypeInterface;
+
   CartID?: number;
   Cart?:   CartInterface;
-  EmployeeID?: number;
-  Employee?:   EmployeeInterface;
+
+  ReceiptSum?:   number;
+
+  PaymenttypeID?: number;
+  Paymenttype?:   PaymentTypeInterface;
+
   MemberID?: number;
   Member?:   MemberInterface;
+
+  ReceiptPaymentAmount?: number;
+  ReceiptChange?:        number;
+
+  EmployeeID?: number;
+  Employee?:   EmployeeInterface;
+  
+  ReceiptTime?: Date | null;
 }
