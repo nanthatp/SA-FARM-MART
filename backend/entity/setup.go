@@ -517,9 +517,9 @@ func SetupDatabase() {
 	lisa := Member{
 		FirstName:     "Lisa",
 		LastName:      "Kim",
-		Age:           22,
+		Age:           25,
 		Gender:        female,
-		Date_Of_Birth: time.Time{},
+		Date_Of_Birth: time.Date(1997, 3, 27, 0, 0, 0, 0, time.Now().UTC().Location()),
 		Province:      sisaket,
 		Telephone:     "0891341594",
 		Employee:      bastien,
@@ -530,9 +530,9 @@ func SetupDatabase() {
 	tom := Member{
 		FirstName:     "Tom",
 		LastName:      "William",
-		Age:           25,
+		Age:           11,
 		Gender:        male,
-		Date_Of_Birth: time.Time{},
+		Date_Of_Birth: time.Date(2011, 11, 11, 0, 0, 0, 0, time.Now().UTC().Location()),
 		Province:      phra_nakhon_si_ayutthaya,
 		Telephone:     "0985547553",
 		Employee:      bastien,
@@ -545,7 +545,7 @@ func SetupDatabase() {
 		LastName:      "Barber",
 		Age:           23,
 		Gender:        female,
-		Date_Of_Birth: time.Time{},
+		Date_Of_Birth: time.Date(1999, 6, 4, 0, 0, 0, 0, time.Now().UTC().Location()),
 		Province:      sing_buri,
 		Telephone:     "0785412335",
 		Employee:      cosmo,
@@ -558,7 +558,7 @@ func SetupDatabase() {
 		LastName:      "Hiddleson",
 		Age:           28,
 		Gender:        male,
-		Date_Of_Birth: time.Now(),
+		Date_Of_Birth: time.Date(1994, 6, 23, 0, 0, 0, 0, time.Now().UTC().Location()),
 		Province:      nakhon_pathom,
 		Telephone:     "0654252198",
 		Employee:      cosmo,
@@ -646,17 +646,17 @@ func SetupDatabase() {
 
 	// Shelf Data
 	shelf_A := Shelfproduct{
-		Shelfproduct_name: "Shelf_A",
+		Shelf_name: "Shelf_A",
 	}
 	db.Model(&Shelfproduct{}).Create(&shelf_A)
 
 	shelf_B := Shelfproduct{
-		Shelfproduct_name: "Shelf_B",
+		Shelf_name: "Shelf_B",
 	}
 	db.Model(&Shelfproduct{}).Create(&shelf_B)
 
 	shelf_C := Shelfproduct{
-		Shelfproduct_name: "Shelf_C",
+		Shelf_name: "Shelf_C",
 	}
 	db.Model(&Shelfproduct{}).Create(&shelf_C)
 

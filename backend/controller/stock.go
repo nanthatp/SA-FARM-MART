@@ -49,7 +49,7 @@ func CreateStock(c *gin.Context) {
 	// 13: สร้าง Stock
 	wv := entity.Stock{
 		Product:        product,              //โยงความสัมพันธ์กับ Entity product
-		Stock_quantity: stock.Stock_quantity, // ตั้งค่าฟิลด์ StockQuantity
+		Stock_quantity: stock.Stock_quantity, // ตั้งค่าฟิลด์ Stock Quantity
 		Lot:            lot,                  // โยงความสัมพันธ์กับ Entity Lot
 		Shelfproduct:   shelfproduct,         // โยงความสัมพันธ์กับ Entity Shelfproduct
 		Employee:       employee,             // โยงความสัมพันธ์กับ Entity Employee

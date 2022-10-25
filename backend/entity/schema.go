@@ -115,15 +115,15 @@ type Lot struct {
 
 type Shelfproduct struct {
 	gorm.Model
-	Shelfproduct_name string
-	Stock             []Stock `gorm:"foreignKey:ShelfproductID"`
+	Shelf_name string
+	Stock      []Stock `gorm:"foreignKey:ShelfproductID"`
 }
 
 type Stock struct {
 	gorm.Model
 	ProductID      *uint
 	Product        Product `gorm:"references:id"`
-	Stock_quantity int
+	Stock_quantity float32
 	LotID          *uint
 	Lot            Lot `gorm:"references:id"`
 	ShelfproductID *uint
