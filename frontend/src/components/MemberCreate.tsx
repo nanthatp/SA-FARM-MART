@@ -218,11 +218,10 @@ function MemberCreate() {
         <Divider />
         <Grid container spacing={3} sx={{ padding: 2 }}>
           <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
+            <FormControl fullWidth >
               <TextField
                 margin="normal"
                 required
-                fullWidth
                 id="FirstName"
                 type="string"
                 size="medium"
@@ -235,11 +234,10 @@ function MemberCreate() {
           </Grid>
 
           <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
+            <FormControl fullWidth >
               <TextField
                 margin="normal"
                 required
-                fullWidth
                 id="LastName"
                 type="string"
                 size="medium"
@@ -251,11 +249,10 @@ function MemberCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
+            <FormControl fullWidth >
               <TextField
                 margin="normal"
                 required
-                fullWidth
                 id="Age"
                 type="number"
                 size="medium"
@@ -291,7 +288,7 @@ function MemberCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-          <FormControl fullWidth variant="outlined">
+          <FormControl fullWidth >
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
                 label="BirthDay"
@@ -332,7 +329,7 @@ function MemberCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <FormControl fullWidth variant="outlined">
+            <FormControl fullWidth >
               <TextField
                 margin="normal"
                 required
@@ -348,7 +345,7 @@ function MemberCreate() {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-          <FormControl fullWidth variant="outlined">
+          <FormControl fullWidth >
               <InputLabel id="demo-simple-select-label">Employee</InputLabel>      
               <Select
                 native

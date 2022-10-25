@@ -40,7 +40,6 @@ import Orders from "./components/Orders";
 import Receipts from "./components/Receipts";
 import ReceiptCreate from "./components/ReceiptCreate";
 import SignIn from "./components/SignIn";
-import Test from "./components/Test"
 
 const drawerWidth = 240;
 
@@ -222,7 +221,6 @@ function App() {
                 <Route path="/cart/create" element={<CartCreate />}/>
                 <Route path="/receipts" element={<Receipts />} />
                 <Route path="/receipt/create" element={<ReceiptCreate />}/>
-                <Route path="/test" element={<Test />}/>
               </Routes>
             </Container>
           </Box>

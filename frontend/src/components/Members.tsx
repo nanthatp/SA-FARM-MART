@@ -52,7 +52,7 @@ function Members() {
       valueFormatter: (params) => params.value.Gender,
     },
     { field: "Date_Of_Birth", 
-      headerName: "Date Of Birth", 
+      headerName: "Birthday", 
       width: 250 ,
       renderCell:(params) => moment(params.row.Date_Of_Birth).format('YYYY-MM-DD')
     },
