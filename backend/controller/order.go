@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/* Dispensation Medicine */
 // POST /orders
 func Order(c *gin.Context) { // gin.Context มีรายละเอียดของ request, validates, จัดรูปแบบเป็น JSON
 	var order entity.Order
@@ -18,12 +17,6 @@ func Order(c *gin.Context) { // gin.Context มีรายละเอียด
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	// // เช็คว่าหากไม่มีการป้อนจำนวนยามาจะแจ้ง error ออกไป
-	// if order.Product_quantity == 0 { // เนื่องจาก Number() ใน React หากเจอ null / undefined จะ return 0
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "medicine amount invalid"})
-	// 	return
-	// }
 
 	// 13: ค้นหา product ด้วย id
 	if tx := entity.DB().Where("id = ?", order.ProductID).First(&order); tx.RowsAffected == 0 {
@@ -53,15 +46,56 @@ func Order(c *gin.Context) { // gin.Context มีรายละเอียด
 	c.JSON(http.StatusOK, gin.H{"data": od}) // respone ว่าผ่าน และส่งข้อมูลกลับไป
 }
 
-// GET /dispensation_medicines
+func GetOrders(c *gin.Context) {
+	var order entity.Cart
+	id := c.Param("id")
+	if tx := entity.DB().Where("id = ?", id).First(&order); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "cart not found"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"data": order})
+}
+
+// GET order
 func ListOrder(c *gin.Context) {
 	var orders []entity.Order
 
-	/*** ตอนแสดงผลตารางต้องมี prepload ***/
-	if err := entity.DB().Preload("Product").Raw("SELECT * FROM orders").Find(&orders).Error; err != nil {
+	if err := entity.DB().Preload("Product").Preload("Cart").Raw("SELECT * FROM orders").Find(&orders).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"data": orders})
+}
+
+// DELETE /carts/:id
+func DeleteOrders(c *gin.Context) {
+	id := c.Param("id")
+	if tx := entity.DB().Exec("DELETE FROM carts WHERE id = ?", id); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "order not found"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": id})
+}
+
+// PATCH /carts
+func UpdateOrders(c *gin.Context) {
+	var order entity.Cart
+	if err := c.ShouldBindJSON(&order); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if tx := entity.DB().Where("id = ?", order.ID).First(&order); tx.RowsAffected == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "order not found"})
+		return
+	}
+
+	if err := entity.DB().Save(&order).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"data": order})
 }

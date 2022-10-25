@@ -32,7 +32,7 @@ function Order() {
 
   //** 8: ดึงข้อมูลทั้งหมด() */
   const getOrders = async () => {
-    const apiUrl = "http://localhost:8080/orders";
+    const apiUrl = "http://localhost:8080/order";
     const requestOptions = {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -46,6 +46,7 @@ function Order() {
           }
         });
   };
+  console.log("getOrders:",getOrders)
 
   useEffect(() => {
     getCarts();

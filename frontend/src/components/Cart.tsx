@@ -14,16 +14,6 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Autocomplete, Button } from "@mui/material";
 
-
-
-
-
-import SaveIcon from "@mui/icons-material/Save";
-
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-
 import { EmployeeInterface } from "../interfaces/IEmployee";
 import { MemberInterface } from "../interfaces/IMember";
 import { ProductInterface } from "../interfaces/IProduct";
@@ -80,15 +70,15 @@ function Cart(){
           [name]: event.target.value,
         });
     }
-    const handleClose = ( // AlertBar
-        event?: React.SyntheticEvent | Event,
-        reason?: string
+    const handleClose = (
+      event?: React.SyntheticEvent | Event,
+      reason?: string
     ) => {
-        if (reason === "clickaway") {
-            return;
-        }
-        setSuccess(false);
-        setError(false);
+      if (reason === "clickaway") {
+        return;
+      }
+      setSuccess(false);
+      setError(false);
     };
 //============================================== START step 9 บันทึกใบสั่งยา() ==============================================
 
@@ -199,27 +189,36 @@ function Cart(){
         }
     };
 
+    const getMembers = async () => {
+      let res = await GetMembers();
+          carts.MemberID = res.ID;
+      if (res) {
+      setMembers(res);
+      }
+  };
+
+
     
 
     
     //** 6: ดึงข้อมูลทั้งหมด() */
-    const getMembers = async () => {
-        const apiUrl = "http://localhost:8080/members";
-        const requestOptions = {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        };
+    // const getMembers = async () => {
+    //     const apiUrl = "http://localhost:8080/members";
+    //     const requestOptions = {
+    //         method: "GET",
+    //         headers: { "Content-Type": "application/json" },
+    //     };
        
-        fetch(apiUrl, requestOptions)
-            .then((response) => response.json())
-            .then((res) => {
-                if (res.data) {
-                    setMembers(res.data);
-                }
-            });
-    };
+    //     fetch(apiUrl, requestOptions)
+    //         .then((response) => response.json())
+    //         .then((res) => {
+    //             if (res.data) {
+    //                 setMembers(res.data);
+    //             }
+    //         });
+    // };
 
-    //** 7: ดึงข้อมูลทั้งหมด() */
+    /* 7: ดึงข้อมูลทั้งหมด() */
     const getProducts = async () => {
         const apiUrl = "http://localhost:8080/products";
         const requestOptions = {
@@ -238,6 +237,7 @@ function Cart(){
     
     React.useEffect(() => {
         getCarts();
+        getMembers();
         getEmployee();
         getProducts();
     }, []);
@@ -254,7 +254,7 @@ return (
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="success">
-            Success
+            Success!
         </Alert>
       </Snackbar>
       <Snackbar
@@ -264,7 +264,7 @@ return (
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="error">
-          Failed
+          Failed!
         </Alert>
       </Snackbar>
       <Paper>
@@ -318,15 +318,18 @@ return (
             <Autocomplete
                 id="product"
                 options={products}
+          
                 sx={{ width: 420,paddingY: 2 }}
                 style={{ float: "right" }}
                 size="medium"
                 onChange={handleChangeProduct_Name}
                 getOptionLabel={(option: any) => 
-                    `${option.Prodduct_Name}`
+                    `${option.Product_name}`
                 } //filter value
                 renderInput={(params) => <TextField {...params} label="Product " />}
                 renderOption={(props: any, option: any) => {
+                console.log("props :",props)
+                console.log("option :",option);
                 return (
                     <li
                     {...props}
@@ -350,11 +353,14 @@ return (
                 type="number"
                 size="medium"  
                 value={orders?.Product_quantity }
-                onChange={(event: { target: { value: any; }; }) => setQuantity(Number(event.target.value))}
+                onChange={(event) => setQuantity(Number(event.target.value))}
                 label="Quantity"
-              />
+            /> 
             </FormControl>
           </Grid>
+          {/* <Grid item xs={2}>
+              <h4> x {productUnitArray[Number(orders.ProductID) - 1]} </h4>
+          </Grid> */}
     
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
@@ -377,29 +383,8 @@ return (
               </Select>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={12}>
-            <p>Employee</p>
-            <FormControl fullWidth variant="outlined">
-              <TextField
-                id="EmployeeID"
-                variant="outlined"
-                type="number"
-                size="medium"
-                placeholder="Please select a Employee."
-                value={product.EmployeeID || ""}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-          </Grid> */}
+        
           <Grid item xs={12}>
-            {/* <Button
-              component={RouterLink}
-              to="/cart/create"
-              variant="contained"
-              color="inherit"
-            >
-              กลับ
-            </Button> */}
             <Button
               style={{ float: "right" }}
               onClick={submit}
