@@ -11,6 +11,4 @@ export interface EmployeeInterface {
     GenderID:    number,
     PositionID:  number,
     EducationID: number,
-
-    
   }

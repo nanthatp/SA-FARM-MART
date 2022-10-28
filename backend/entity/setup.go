@@ -49,6 +49,7 @@ func SetupDatabase() {
 	db = database
 
 	password, err := bcrypt.GenerateFromPassword([]byte("123456"), 14)
+	password2, err := bcrypt.GenerateFromPassword([]byte("56789"), 14)
 
 	db.Model(&User{}).Create(&User{
 		Name:     "Gunner",
@@ -119,7 +120,7 @@ func SetupDatabase() {
 		Telephone: "0912345672",
 		Email:     "cosmo@email.com",
 		Slary:     9000,
-		Password:  "987654321",
+		Password:  string(password2),
 		User:      gunner,
 		Gender:    male,
 		Position:  salesperson,
@@ -771,65 +772,4 @@ func SetupDatabase() {
 		Employee:             cosmo,
 		Member:               lisa,
 	})
-	//===============================================
-	//
-	// === Query
-	//
-
-	// var target Employee
-	// db.Model(&Employee{}).Find(&target, db.Where("email = ?", "tanapon@gmail.com"))
-
-	//var employeeLogin Employee
-	//db.Model(&Employee{}).Find(&employeeLogin, db.Where("name = ? and owner_id = ?", "Watched", target.ID))
-
-	// var employee []*Employee
-	// db.Model(&Employee{}).
-	// 	Joins("User").
-	// 	Joins("Gender").
-	// 	Joins("Position").
-	// 	Joins("Education").
-	// 	Find(&employee)
-
-	// var product []*Product
-	// db.Model(&Product{}).
-	// 	Joins("Typeproduct").
-	// 	Joins("Manufacturer").
-	// 	Joins("Employee").
-	// 	Find(&product)
-
-	// var stock []*Stock
-	// db.Model(&Stock{}).
-	// 	Joins("Product").
-	// 	Joins("Lot").
-	// 	Joins("Shelfproduct").
-	// 	Joins("Employee").
-	// 	Find(&stock)
-
-	// var member []*Member
-	// db.Model(&Employee{}).
-	// 	Joins("Gender").
-	// 	Joins("Province").
-	// 	Joins("Employee").
-	// 	Find(&member)
-
-	// var cart []*Cart
-	// db.Model(&Cart{}).
-	// 	Joins("Employee").
-	// 	Joins("Member").
-	// 	Find(&cart)
-
-	// var order []*Order
-	// db.Model(&Order{}).
-	// 	Joins("Product").
-	// 	Joins("Cart").
-	// 	Find(&order)
-
-	// var receipt []*Receipt
-	// db.Model(&Receipt{}).
-	// 	Joins("Paymenttype").
-	// 	Joins("Cart").
-	// 	// Joins("Employee").
-	// 	// Joins("Member").
-	// 	Find(&receipt)
-
 }
