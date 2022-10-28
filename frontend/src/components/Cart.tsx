@@ -3,6 +3,10 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+<<<<<<< HEAD
+=======
+//import Button from "@mui/material/Button";
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 import Snackbar from "@mui/material/Snackbar";
 import Divider from "@mui/material/Divider";
 import InputLabel from '@mui/material/InputLabel';
@@ -22,6 +26,7 @@ import { CartInterface } from "../interfaces/ICart";
 import {
     GetEmployeeByEID,
     GetMembers,
+<<<<<<< HEAD
     // GetProducts,
     // GetCarts,
     // //GetOrders,
@@ -31,6 +36,18 @@ import {
   } from "../services/HttpClientService";
 
 
+=======
+    GetProducts,
+    GetCarts,
+    Carts,
+    Orders,
+    
+    
+  } from "../services/HttpClientService";
+
+
+
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref
@@ -47,11 +64,22 @@ function Cart(){
     const [cartID, setcartID] = React.useState<number | null>(null);
     const [orders, setOrders] = React.useState<Partial<OrderInterface>>({});
      
+<<<<<<< HEAD
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
     //const [lastcartID, setlastcartID] = React.useState<number | null>(null);
     
 
+=======
+    
+    const [latestcartID, setlatestcartID] = React.useState<number | null>(null);
+
+    const [success, setSuccess] = React.useState(false);
+    const [error, setError] = React.useState(false);
+    
+
+//============================================== HANDLE SECTION ==============================================
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 
     
     const handleChangeProduct_Name = (event: any, value: any) => {
@@ -75,7 +103,11 @@ function Cart(){
       setSuccess(false);
       setError(false);
     };
+<<<<<<< HEAD
 
+=======
+//============================================== START step 9 บันทึกใบสั่งยา() ==============================================
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 
     /* Insert */
     async function submit() {
@@ -115,16 +147,27 @@ function Cart(){
                 body: JSON.stringify(data_order),
         };
 
+<<<<<<< HEAD
             // //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา cartID ไม่เจอ */
             // if( lastcartID!= lastcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
             //     // ตรวจสอบว่า cart ID และ quantity ได้ถูกเลือก หรือไม่ ถ้าไม่ถูกเลือกจะไม่ทำการ fetch และ
             //     // พอ fetch order ก็จะแจ้ง error เพราะหา order ไม่เจอ เนื่องจากมันไม่ถุก create จากตรงนี้
+=======
+            // //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา dispensationID ไม่เจอ */
+            // if( latestcartID!= latestcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
+            //     // ตรวจสอบว่า Medicine ID และ Amount ได้ถูกกรอกร/เลือก หรือไม่ ถ้าไม่ถูกกรอกจะไม่ทำการ fetch และ
+            //     // พอ fetch dsiepnsation medicine ก็จะแจ้ง error เพราะหา dispensation ไม่เจอ เนื่องจากมันไม่ถุก create จากตรงนี้
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
             //     if(data_order.Quantity && data_order.ProducID){ // หากเป็น null จะเป็นเท็จ
             //         await fetch(`${apiUrl}/carts`, requestOptions_cart)
             //             .then((response) => response.json())
             //             .then((res) => {
             //             if (res.data) {
+<<<<<<< HEAD
             //                 setlastcartID(cartID)
+=======
+            //                 setlatestcartID(arts)
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
             //                 setSuccess(true)
             //             } else {
             //                 setError(true)
@@ -142,10 +185,27 @@ function Cart(){
                 } else {
                     setError(true)
                 }
+<<<<<<< HEAD
             console.log("orders", orders)   
             });
     }
     
+=======
+            });
+    }
+            
+
+        
+
+    
+
+//============================================== END step 9 บันทึกใบสั่งยา() ==============================================
+
+//============================================== START step 4 เตรียมข้อมูลให้หน้าจอ() ==============================================
+
+    
+
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
     //** 5: ดึงข้อมูลทั้งหมด() */
     const getCarts = async () => {
         const apiUrl = "http://localhost:8080/carts";
@@ -182,6 +242,7 @@ function Cart(){
       }
   };
 
+<<<<<<< HEAD
 //   const getOrders = async () => {
 //     let res = await GetOrders();
 //         orders.Product = res.ID;
@@ -190,6 +251,8 @@ function Cart(){
 //     }
 // };
 
+=======
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 
     
 
@@ -211,7 +274,11 @@ function Cart(){
     //         });
     // };
 
+<<<<<<< HEAD
     /*ดึงข้อมูลทั้งหมด() */
+=======
+    /* 7: ดึงข้อมูลทั้งหมด() */
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
     const getProducts = async () => {
         const apiUrl = "http://localhost:8080/products";
         const requestOptions = {
@@ -236,6 +303,10 @@ function Cart(){
     }, []);
     var productUnitArray = products.map((item: ProductInterface) => (item.Product_name));
 
+<<<<<<< HEAD
+=======
+//============================================== END step 4 เตรียมข้อมูลให้หน้าจอ() ==============================================
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 
 return (
     <Container maxWidth="md">
@@ -350,6 +421,13 @@ return (
             /> 
             </FormControl>
           </Grid>
+<<<<<<< HEAD
+=======
+          {/* <Grid item xs={2}>
+              <h4> x {productUnitArray[Number(orders.ProductID) - 1]} </h4>
+          </Grid> */}
+    
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
             <InputLabel id="demo-simple-select-label">Employee</InputLabel>      

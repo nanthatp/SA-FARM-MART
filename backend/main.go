@@ -100,9 +100,17 @@ func main() {
 			router.DELETE("/carts/:id", controller.DeleteCarts)
 
 			// order Routes
+<<<<<<< HEAD
 			router.GET("/orders", controller.ListOrders)
 			router.GET("/order/:id", controller.GetOrders)
 			router.POST("/orders", controller.Order)
+=======
+			router.GET("/orders", controller.ListOrder)
+			router.GET("/order/:id", controller.GetOrders)
+			router.POST("/orders", controller.Order)
+			router.PATCH("/orders", controller.UpdateOrders)
+			router.DELETE("/orders/:id", controller.DeleteOrders)
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 
 			// Paymenttype Routes
 			router.GET("/paymenttypes", controller.ListPaymenttypes)
@@ -120,10 +128,17 @@ func main() {
 
 		}
 	}
+<<<<<<< HEAD
 	// Signup User Route
 	//r.POST("/signup", controller.CreateEmployee)
 	// login User Route
 	//r.POST("/login", controller.Login)
+=======
+	// // Signup User Route
+	// r.POST("/signup", controller.CreateEmployee)
+	// // login User Route
+	// r.POST("/login", controller.Login)
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 
 	// Run the server go run main.go
 	r.Run("localhost: " + PORT)

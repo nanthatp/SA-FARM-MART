@@ -33,6 +33,10 @@ import ProductCreate from "./components/ProductCreate";
 import Stocks from "./components/Stock";
 import StockCreate from "./components/StockCreate";
 import Cart from "./components/Cart";
+<<<<<<< HEAD
+=======
+import Order from "./components/Order";
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 import Receipts from "./components/Receipts";
 import ReceiptCreate from "./components/ReceiptCreate";
 import SignIn from "./components/SignIn";
@@ -96,8 +100,14 @@ const menu = [
   { name: "Product", icon: <WidgetsIcon />, path: "/products" },
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
   { name: "Cart", icon: <AddShoppingCartIcon />, path: "/cart" },
+<<<<<<< HEAD
   { name: "Build Receipt", icon: <ReceiptIcon />, path: "/receipt/create" },
   
+=======
+  { name: "Order", icon: < ViewListIcon/>, path: "/order" },
+  { name: "Build Receipt", icon: <ReceiptIcon />, path: "/receipt/create" },
+  { name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
 ];
 
 function App() {
@@ -212,7 +222,11 @@ function App() {
                 <Route path="/product/create" element={<ProductCreate />}/>
                 <Route path="/stocks" element={<Stocks />} />
                 <Route path="/stock/create" element={<StockCreate />}/>
+<<<<<<< HEAD
               
+=======
+                <Route path="/order" element={<Order />} />
+>>>>>>> 317420c0662edba199180edb0b65f1d40052d430
                 <Route path="/cart" element={<Cart />}/>
                 <Route path="/receipts" element={<Receipts />} />
                 <Route path="/receipt/create" element={<ReceiptCreate />}/>
