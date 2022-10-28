@@ -20,13 +20,10 @@ import Button from "@mui/material/Button";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import HomeIcon from "@mui/icons-material/Home";
 import PeopleIcon from "@mui/icons-material/People";
-import BadgeIcon from '@mui/icons-material/Badge';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import ViewListIcon from '@mui/icons-material/ViewList';
 
 import Home from "./components/Home";
 import Members from "./components/Members";
@@ -95,7 +92,6 @@ const mdTheme = createTheme();
 
 const menu = [
   { name: "Home", icon: <HomeIcon />, path: "/" },
-  { name: "Employee", icon: <BadgeIcon />, path: "/" },
   { name: "Member", icon: <PeopleIcon />, path: "/members" },
   { name: "Product", icon: <WidgetsIcon />, path: "/products" },
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
