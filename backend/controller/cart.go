@@ -13,23 +13,21 @@ func Cart(c *gin.Context) {
 	var employee entity.Employee
 	var member entity.Member
 
-	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 8 จะถูก bind เข้าตัวแปร watchVideo
 	if err := c.ShouldBindJSON(&cart); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// 9: ค้นหา video ด้วย id
 	if tx := entity.DB().Where("id = ?", cart.EmployeeID).First(&employee); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "employee not found"})
 		return
 	}
-	// 10: ค้นหา resolution ด้วย id
+
 	if tx := entity.DB().Where("id = ?", cart.MemberID).First(&member); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "member not found"})
 		return
 	}
-	// 12: สร้าง WatchVideo
+	// 12: สร้าง Cart
 	ca := entity.Cart{
 		Employee: employee, // โยงความสัมพันธ์กับ Entity Employee
 		Member:   member,   // โยงความสัมพันธ์กับ Entity Member
@@ -70,17 +68,6 @@ func ListCarts(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"data": carts})
 }
-
-// func LisReceipts(c *gin.Context) { // ดึงข้อมูลทุกอย่างใน dispensation
-// 	var carts []entity.Cart
-
-// 	if err := entity.DB().Preload("Member").Raw("SELECT * FROM (SELECT * FROM carts INNER JOIN carts ORDER BY id DESC) AS x GROUP BY member_id ").Find(&carts).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-
-// 	c.JSON(http.StatusOK, gin.H{"data": carts})
-// }
 
 // DELETE /carts/:id
 func DeleteCarts(c *gin.Context) {

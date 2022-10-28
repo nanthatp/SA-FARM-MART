@@ -22,11 +22,11 @@ import { CartInterface } from "../interfaces/ICart";
 import {
     GetEmployeeByEID,
     GetMembers,
-    GetProducts,
-    GetCarts,
-    //GetOrders,
-    Carts,
-    Orders,
+    // GetProducts,
+    // GetCarts,
+    // //GetOrders,
+    // Carts,
+    // Orders,
 
   } from "../services/HttpClientService";
 
@@ -49,14 +49,11 @@ function Cart(){
      
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
-    const [lastcartID, setlastcartID] = React.useState<number | null>(null);
+    //const [lastcartID, setlastcartID] = React.useState<number | null>(null);
     
 
-<<<<<<< HEAD
 
     
-=======
->>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
     const handleChangeProduct_Name = (event: any, value: any) => {
         setOrders({ ...orders, ProductID: value?.ID }); 
     };
@@ -78,7 +75,7 @@ function Cart(){
       setSuccess(false);
       setError(false);
     };
-//============================================== START step 9 บันทึกใบสั่งยา() ==============================================
+
 
     /* Insert */
     async function submit() {
@@ -118,23 +115,23 @@ function Cart(){
                 body: JSON.stringify(data_order),
         };
 
-            //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา dispensationID ไม่เจอ */
-            if( lastcartID!= lastcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
-                // ตรวจสอบว่า Medicine ID และ Amount ได้ถูกกรอกร/เลือก หรือไม่ ถ้าไม่ถูกกรอกจะไม่ทำการ fetch และ
-                // พอ fetch dsiepnsation medicine ก็จะแจ้ง error เพราะหา dispensation ไม่เจอ เนื่องจากมันไม่ถุก create จากตรงนี้
-                if(data_order.Quantity && data_order.ProducID){ // หากเป็น null จะเป็นเท็จ
-                    await fetch(`${apiUrl}/carts`, requestOptions_cart)
-                        .then((response) => response.json())
-                        .then((res) => {
-                        if (res.data) {
-                            setlastcartID(cartID)
-                            setSuccess(true)
-                        } else {
-                            setError(true)
-                        }
-                    });
-                }
-            }
+            // //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา cartID ไม่เจอ */
+            // if( lastcartID!= lastcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
+            //     // ตรวจสอบว่า cart ID และ quantity ได้ถูกเลือก หรือไม่ ถ้าไม่ถูกเลือกจะไม่ทำการ fetch และ
+            //     // พอ fetch order ก็จะแจ้ง error เพราะหา order ไม่เจอ เนื่องจากมันไม่ถุก create จากตรงนี้
+            //     if(data_order.Quantity && data_order.ProducID){ // หากเป็น null จะเป็นเท็จ
+            //         await fetch(`${apiUrl}/carts`, requestOptions_cart)
+            //             .then((response) => response.json())
+            //             .then((res) => {
+            //             if (res.data) {
+            //                 setlastcartID(cartID)
+            //                 setSuccess(true)
+            //             } else {
+            //                 setError(true)
+            //             }
+            //         });
+            //     }
+            // }
         
 
         fetch(`${apiUrl}/orders`, requestOptions_order)
@@ -148,18 +145,7 @@ function Cart(){
             console.log("orders", orders)   
             });
     }
-<<<<<<< HEAD
-            
-
-        
-
     
-
-
-    
-
-=======
->>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
     //** 5: ดึงข้อมูลทั้งหมด() */
     const getCarts = async () => {
         const apiUrl = "http://localhost:8080/carts";
@@ -196,7 +182,6 @@ function Cart(){
       }
   };
 
-<<<<<<< HEAD
 //   const getOrders = async () => {
 //     let res = await GetOrders();
 //         orders.Product = res.ID;
@@ -226,8 +211,6 @@ function Cart(){
     //         });
     // };
 
-=======
->>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
     /*ดึงข้อมูลทั้งหมด() */
     const getProducts = async () => {
         const apiUrl = "http://localhost:8080/products";
@@ -367,10 +350,6 @@ return (
             /> 
             </FormControl>
           </Grid>
-          {/* <Grid item xs={2}>
-              <h4> x {productUnitArray[Number(orders.ProductID) - 1]} </h4>
-          </Grid> */}
-    
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
             <InputLabel id="demo-simple-select-label">Employee</InputLabel>      

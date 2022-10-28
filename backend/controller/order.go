@@ -30,14 +30,14 @@ func Order(c *gin.Context) { // gin.Context มีรายละเอียด
 		return
 	}
 
-	// 15: สร้าง (d,m,MEDICINE_AMOUNT,TIME_STAMP)
+	// 15: สร้าง (product,quantity,cart)
 	od := entity.Order{
-		Product:          product, // โยงความสัมพันธ์กับ Entity Resolution
+		Product:          product, // โยงความสัมพันธ์กับ Entity product
 		Product_quantity: order.Product_quantity,
-		Cart:             cart, // โยงความสัมพันธ์กับ E
+		Cart:             cart, // โยงความสัมพันธ์กับ Cart
 	}
 
-	// 16: บันทึก_Dispensation_Medicine
+	// 16: บันทึก order
 	if err := entity.DB().Create(&od).Error; err != nil { // สร้าง DB พร้อมเช็คว่าสร้างสำเร็จหรือไม่
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
