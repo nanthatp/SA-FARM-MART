@@ -25,7 +25,7 @@ func main() {
 			router.GET("/employees", controller.ListEmployees)
 			//router.GET("/employee/:id", controller.ListEmployees)
 			router.GET("/employee/:id", controller.GetEmployee)
-			router.POST("/employees", controller.CreateEmployee)
+			router.POST("/employees", controller.CreateEmployee2)
 			router.PATCH("/employees", controller.UpdateEmployee)
 			router.DELETE("/employees/:id", controller.DeleteEmployee)
 
@@ -100,7 +100,7 @@ func main() {
 			router.DELETE("/carts/:id", controller.DeleteCarts)
 
 			// order Routes
-			router.GET("/orders", controller.ListOrder)
+			router.GET("/orders", controller.ListOrders)
 			router.GET("/order/:id", controller.GetOrders)
 			router.POST("/orders", controller.Order)
 			router.PATCH("/orders", controller.UpdateOrders)
