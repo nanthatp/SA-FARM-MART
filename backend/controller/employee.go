@@ -7,20 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// // POST /employees
-// func CreateEmployee2(c *gin.Context) {
-// 	var employee entity.Employee
-// 	if err := c.ShouldBindJSON(&employee); err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
+// POST /employees
+func CreateEmployee2(c *gin.Context) {
+	var employee entity.Employee
+	if err := c.ShouldBindJSON(&employee); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
-// 	if err := entity.DB().Create(&employee).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-// 	c.JSON(http.StatusCreated, gin.H{"data": employee})
-// }
+	if err := entity.DB().Create(&employee).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusCreated, gin.H{"data": employee})
+}
 
 // GET /employee/:id
 func GetEmployee(c *gin.Context) {

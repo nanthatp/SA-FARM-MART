@@ -3,7 +3,8 @@ package main
 import (
 	"github.com/JRKs1532/sa-65-example/controller"
 	"github.com/JRKs1532/sa-65-example/entity"
-	"github.com/JRKs1532/sa-65-example/middlewares"
+
+	//"github.com/JRKs1532/sa-65-example/middlewares"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,7 +19,7 @@ func main() {
 	router := r.Group("/")
 	{
 
-		router.Use(middlewares.Authorizes())
+		//router.Use(middlewares.Authorizes())
 		{
 			// Employee Routes
 			router.GET("/employees", controller.ListEmployees)
@@ -122,9 +123,9 @@ func main() {
 		}
 	}
 	// Signup User Route
-	r.POST("/signup", controller.CreateEmployee)
+	//r.POST("/signup", controller.CreateEmployee)
 	// login User Route
-	r.POST("/login", controller.Login)
+	//r.POST("/login", controller.Login)
 
 	// Run the server go run main.go
 	r.Run("localhost: " + PORT)

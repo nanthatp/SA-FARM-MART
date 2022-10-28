@@ -60,7 +60,7 @@ func GetOrder(c *gin.Context) {
 // GET /orders
 func ListOrders(c *gin.Context) {
 	var carts []entity.Cart
-	if err := entity.DB().Preload("Product").Preload("Cart").Raw("SELECT * FROM oders").Find(&carts).Error; err != nil {
+	if err := entity.DB().Preload("Product").Preload("Cart").Raw("SELECT * FROM orders").Find(&carts).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
