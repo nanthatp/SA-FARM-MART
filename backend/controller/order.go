@@ -25,7 +25,7 @@ func Order(c *gin.Context) { // gin.Context มีรายละเอียด
 	}
 
 	// 14: ค้นหา cart ด้วย id
-	if tx := entity.DB().Where("id = ?", order.CartID).First(&cart); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", order.CartID).First(&order); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "cart not found"})
 		return
 	}
