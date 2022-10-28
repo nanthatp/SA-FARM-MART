@@ -8,12 +8,21 @@ import (
 )
 
 // POST /employees
+<<<<<<< HEAD
 func CreateEmployee2(c *gin.Context) {
 	var employee entity.Employee
 	if err := c.ShouldBindJSON(&employee); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+=======
+// func CreateEmployee(c *gin.Context) {
+// 	var employee entity.Employee
+// 	if err := c.ShouldBindJSON(&employee); err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
 
 	if err := entity.DB().Create(&employee).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

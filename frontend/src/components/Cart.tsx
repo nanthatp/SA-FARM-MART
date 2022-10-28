@@ -3,6 +3,10 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+<<<<<<< HEAD
+=======
+//import Button from "@mui/material/Button";
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
 import Snackbar from "@mui/material/Snackbar";
 import Divider from "@mui/material/Divider";
 import InputLabel from '@mui/material/InputLabel';
@@ -24,7 +28,10 @@ import {
     GetMembers,
     GetProducts,
     GetCarts,
+<<<<<<< HEAD
     //GetOrders,
+=======
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
     Carts,
     Orders,
     
@@ -49,11 +56,22 @@ function Cart(){
     const [cartID, setcartID] = React.useState<number | null>(null);
     const [orders, setOrders] = React.useState<Partial<OrderInterface>>({});
      
+<<<<<<< HEAD
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
     const [lastcartID, setlastcartID] = React.useState<number | null>(null);
     
 
+=======
+    
+    const [latestcartID, setlatestcartID] = React.useState<number | null>(null);
+
+    const [success, setSuccess] = React.useState(false);
+    const [error, setError] = React.useState(false);
+    
+
+//============================================== HANDLE SECTION ==============================================
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
 
     
     const handleChangeProduct_Name = (event: any, value: any) => {
@@ -117,6 +135,7 @@ function Cart(){
                 body: JSON.stringify(data_order),
         };
 
+<<<<<<< HEAD
             //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา dispensationID ไม่เจอ */
             if( lastcartID!= lastcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
                 // ตรวจสอบว่า Medicine ID และ Amount ได้ถูกกรอกร/เลือก หรือไม่ ถ้าไม่ถูกกรอกจะไม่ทำการ fetch และ
@@ -134,6 +153,25 @@ function Cart(){
                     });
                 }
             }
+=======
+            // //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา dispensationID ไม่เจอ */
+            // if( latestcartID!= latestcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
+            //     // ตรวจสอบว่า Medicine ID และ Amount ได้ถูกกรอกร/เลือก หรือไม่ ถ้าไม่ถูกกรอกจะไม่ทำการ fetch และ
+            //     // พอ fetch dsiepnsation medicine ก็จะแจ้ง error เพราะหา dispensation ไม่เจอ เนื่องจากมันไม่ถุก create จากตรงนี้
+            //     if(data_order.Quantity && data_order.ProducID){ // หากเป็น null จะเป็นเท็จ
+            //         await fetch(`${apiUrl}/carts`, requestOptions_cart)
+            //             .then((response) => response.json())
+            //             .then((res) => {
+            //             if (res.data) {
+            //                 setlatestcartID(arts)
+            //                 setSuccess(true)
+            //             } else {
+            //                 setError(true)
+            //             }
+            //         });
+            //     }
+            // }
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
         
 
         fetch(`${apiUrl}/orders`, requestOptions_order)
@@ -144,7 +182,10 @@ function Cart(){
                 } else {
                     setError(true)
                 }
+<<<<<<< HEAD
             console.log("orders", orders)   
+=======
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
             });
     }
             
@@ -153,6 +194,12 @@ function Cart(){
 
     
 
+<<<<<<< HEAD
+=======
+//============================================== END step 9 บันทึกใบสั่งยา() ==============================================
+
+//============================================== START step 4 เตรียมข้อมูลให้หน้าจอ() ==============================================
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
 
     
 
@@ -192,6 +239,7 @@ function Cart(){
       }
   };
 
+<<<<<<< HEAD
 //   const getOrders = async () => {
 //     let res = await GetOrders();
 //         orders.Product = res.ID;
@@ -200,6 +248,8 @@ function Cart(){
 //     }
 // };
 
+=======
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
 
     
 
@@ -221,7 +271,11 @@ function Cart(){
     //         });
     // };
 
+<<<<<<< HEAD
     /*ดึงข้อมูลทั้งหมด() */
+=======
+    /* 7: ดึงข้อมูลทั้งหมด() */
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
     const getProducts = async () => {
         const apiUrl = "http://localhost:8080/products";
         const requestOptions = {
@@ -246,6 +300,10 @@ function Cart(){
     }, []);
     var productUnitArray = products.map((item: ProductInterface) => (item.Product_name));
 
+<<<<<<< HEAD
+=======
+//============================================== END step 4 เตรียมข้อมูลให้หน้าจอ() ==============================================
+>>>>>>> 2107537c69133860a49b6fbe787d4d63260e2823
 
 return (
     <Container maxWidth="md">
