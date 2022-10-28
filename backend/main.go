@@ -102,8 +102,6 @@ func main() {
 			router.GET("/orders", controller.ListOrders)
 			router.GET("/order/:id", controller.GetOrder)
 			router.POST("/orders", controller.CreateOrder)
-			router.PATCH("/orders", controller.UpdateOrder)
-			router.DELETE("/orders/:id", controller.DeleteOrder)
 
 			// Paymenttype Routes
 			router.GET("/paymenttypes", controller.ListPaymenttypes)

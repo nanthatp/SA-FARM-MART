@@ -22,11 +22,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import PeopleIcon from "@mui/icons-material/People";
 import BadgeIcon from '@mui/icons-material/Badge';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import ViewListIcon from '@mui/icons-material/ViewList';
 
 import Home from "./components/Home";
 import Members from "./components/Members";
@@ -35,8 +33,7 @@ import Products from "./components/Products";
 import ProductCreate from "./components/ProductCreate";
 import Stocks from "./components/Stock";
 import StockCreate from "./components/StockCreate";
-import CartCreate from "./components/CartCreate";
-import Orders from "./components/Orders";
+import Cart from "./components/Cart";
 import Receipts from "./components/Receipts";
 import ReceiptCreate from "./components/ReceiptCreate";
 import SignIn from "./components/SignIn";
@@ -99,9 +96,7 @@ const menu = [
   { name: "Member", icon: <PeopleIcon />, path: "/members" },
   { name: "Product", icon: <WidgetsIcon />, path: "/products" },
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
-  { name: "CartCreate", icon: <AddShoppingCartIcon />, path: "/cart/create" },
-  { name: "Order", icon: < ViewListIcon/>, path: "/orders" },
-  { name: "Receipt Management", icon: <ReceiptIcon />, path: "/receipt/create" },
+  { name: "Cart", icon: <AddShoppingCartIcon />, path: "/cart" },  { name: "Receipt Management", icon: <ReceiptIcon />, path: "/receipt/create" },
   //{ name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
 ];
 
@@ -217,8 +212,8 @@ function App() {
                 <Route path="/product/create" element={<ProductCreate />}/>
                 <Route path="/stocks" element={<Stocks />} />
                 <Route path="/stock/create" element={<StockCreate />}/>
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/cart/create" element={<CartCreate />}/>
+
+                <Route path="/cart" element={<Cart />}/>
                 <Route path="/receipts" element={<Receipts />} />
                 <Route path="/receipt/create" element={<ReceiptCreate />}/>
               </Routes>
