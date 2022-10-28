@@ -20,7 +20,6 @@ import Button from "@mui/material/Button";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import HomeIcon from "@mui/icons-material/Home";
 import PeopleIcon from "@mui/icons-material/People";
-import BadgeIcon from '@mui/icons-material/Badge';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
@@ -37,6 +36,7 @@ import Cart from "./components/Cart";
 import Receipts from "./components/Receipts";
 import ReceiptCreate from "./components/ReceiptCreate";
 import SignIn from "./components/SignIn";
+
 
 const drawerWidth = 240;
 
@@ -92,7 +92,6 @@ const mdTheme = createTheme();
 
 const menu = [
   { name: "Home", icon: <HomeIcon />, path: "/" },
-  { name: "Employee", icon: <BadgeIcon />, path: "/" },
   { name: "Member", icon: <PeopleIcon />, path: "/members" },
   { name: "Product", icon: <WidgetsIcon />, path: "/products" },
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
@@ -212,7 +211,6 @@ function App() {
                 <Route path="/product/create" element={<ProductCreate />}/>
                 <Route path="/stocks" element={<Stocks />} />
                 <Route path="/stock/create" element={<StockCreate />}/>
-
                 <Route path="/cart" element={<Cart />}/>
                 <Route path="/receipts" element={<Receipts />} />
                 <Route path="/receipt/create" element={<ReceiptCreate />}/>

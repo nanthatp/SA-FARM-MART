@@ -179,35 +179,6 @@ function Cart(){
       }
   };
 
-//   const getOrders = async () => {
-//     let res = await GetOrders();
-//         orders.Product = res.ID;
-//     if (res) {
-//     setOrders(res);
-//     }
-// };
-
-
-    
-
-    
-    //** 6: ดึงข้อมูลทั้งหมด() */
-    // const getMembers = async () => {
-    //     const apiUrl = "http://localhost:8080/members";
-    //     const requestOptions = {
-    //         method: "GET",
-    //         headers: { "Content-Type": "application/json" },
-    //     };
-       
-    //     fetch(apiUrl, requestOptions)
-    //         .then((response) => response.json())
-    //         .then((res) => {
-    //             if (res.data) {
-    //                 setMembers(res.data);
-    //             }
-    //         });
-    // };
-
     /*ดึงข้อมูลทั้งหมด() */
     const getProducts = async () => {
         const apiUrl = "http://localhost:8080/products";

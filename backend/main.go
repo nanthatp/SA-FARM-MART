@@ -24,7 +24,7 @@ func main() {
 			router.GET("/employees", controller.ListEmployees)
 			//router.GET("/employee/:id", controller.ListEmployees)
 			router.GET("/employee/:id", controller.GetEmployee)
-			//router.POST("/employees", controller.CreateEmployee)
+			router.POST("/employees", controller.CreateEmployee)
 			router.PATCH("/employees", controller.UpdateEmployee)
 			router.DELETE("/employees/:id", controller.DeleteEmployee)
 
@@ -93,15 +93,15 @@ func main() {
 
 			// cart Routes
 			router.GET("/carts", controller.ListCarts)
-			router.GET("/cart/:id", controller.GetCart)
-			router.POST("/carts", controller.CreateCart)
-			router.PATCH("/carts", controller.UpdateCart)
-			router.DELETE("/carts/:id", controller.DeleteCart)
+			router.GET("/cart/:id", controller.GetCarts)
+			router.POST("/carts", controller.Cart)
+			router.PATCH("/carts", controller.UpdateCarts)
+			router.DELETE("/carts/:id", controller.DeleteCarts)
 
 			// order Routes
 			router.GET("/orders", controller.ListOrders)
-			router.GET("/order/:id", controller.GetOrder)
-			router.POST("/orders", controller.CreateOrder)
+			router.GET("/order/:id", controller.GetOrders)
+			router.POST("/orders", controller.Order)
 
 			// Paymenttype Routes
 			router.GET("/paymenttypes", controller.ListPaymenttypes)

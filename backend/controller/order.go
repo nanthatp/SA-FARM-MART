@@ -8,50 +8,49 @@ import (
 )
 
 // POST /orders
-func CreateOrder(c *gin.Context) {
-
+func Order(c *gin.Context) { // gin.Context มีรายละเอียดของ request, validates, จัดรูปแบบเป็น JSON
 	var order entity.Order
 	var product entity.Product
 	var cart entity.Cart
-	// ผลลัพธ์ที่ได้จากขั้นตอนที่ 8 จะถูก bind เข้าตัวแปร watchVideo
-	if err := c.ShouldBindJSON(&order); err != nil {
+
+	if err := c.ShouldBindJSON(&order); err != nil { // ตรวจสอบว่า JSON ที่ผ่านเข้ามามีรูปแบบตรงกับที่กำหนดไว้ในDBหรือไม่
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// 9: ค้นหา product ด้วย id
+	// 13: ค้นหา product ด้วย id
 	if tx := entity.DB().Where("id = ?", order.ProductID).First(&order); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "product not found"})
 		return
 	}
 
-	// 10: ค้นหา cart ด้วย id
+	// 14: ค้นหา cart ด้วย id
 	if tx := entity.DB().Where("id = ?", order.CartID).First(&cart); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "cart not found"})
 		return
 	}
 
-	// 12: สร้าง Cart
+	// 15: สร้าง (d,m,MEDICINE_AMOUNT,TIME_STAMP)
 	od := entity.Order{
 		Product:          product, // โยงความสัมพันธ์กับ Entity Resolution
 		Product_quantity: order.Product_quantity,
-		Cart:             cart, // โยงความสัมพันธ์กับ Entity Video // ตั้งค่าฟิลด์ watchedTime
+		Cart:             cart, // โยงความสัมพันธ์กับ E
 	}
 
-	// 13: บันทึก
-	if err := entity.DB().Create(&od).Error; err != nil {
+	// 16: บันทึก_Dispensation_Medicine
+	if err := entity.DB().Create(&od).Error; err != nil { // สร้าง DB พร้อมเช็คว่าสร้างสำเร็จหรือไม่
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusCreated, gin.H{"data": od})
+
+	c.JSON(http.StatusOK, gin.H{"data": od}) // respone ว่าผ่าน และส่งข้อมูลกลับไป
 }
 
-// GET /order/:id
-func GetOrder(c *gin.Context) {
-	var order entity.Order
+func GetOrders(c *gin.Context) {
+	var order entity.Cart
 	id := c.Param("id")
 	if tx := entity.DB().Where("id = ?", id).First(&order); tx.RowsAffected == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "order not found"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "cart not found"})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{"data": order})
@@ -59,11 +58,11 @@ func GetOrder(c *gin.Context) {
 
 // GET /orders
 func ListOrders(c *gin.Context) {
-	var carts []entity.Cart
-	if err := entity.DB().Preload("Product").Preload("Cart").Raw("SELECT * FROM orders").Find(&carts).Error; err != nil {
+	var orders []entity.Cart
+	if err := entity.DB().Preload("Product").Preload("Cart").Raw("SELECT * FROM orders").Find(&orders).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": carts})
+	c.JSON(http.StatusOK, gin.H{"data": orders})
 }
