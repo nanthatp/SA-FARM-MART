@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// // POST /employees
-// func CreateEmployee2(c *gin.Context) {
+// POST /employees
+// func CreateEmployee(c *gin.Context) {
 // 	var employee entity.Employee
 // 	if err := c.ShouldBindJSON(&employee); err != nil {
 // 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
