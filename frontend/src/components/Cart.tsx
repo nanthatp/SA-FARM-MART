@@ -27,10 +27,8 @@ import {
     //GetOrders,
     Carts,
     Orders,
-    
-    
-  } from "../services/HttpClientService";
 
+  } from "../services/HttpClientService";
 
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -54,8 +52,11 @@ function Cart(){
     const [lastcartID, setlastcartID] = React.useState<number | null>(null);
     
 
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
     const handleChangeProduct_Name = (event: any, value: any) => {
         setOrders({ ...orders, ProductID: value?.ID }); 
     };
@@ -147,6 +148,7 @@ function Cart(){
             console.log("orders", orders)   
             });
     }
+<<<<<<< HEAD
             
 
         
@@ -156,6 +158,8 @@ function Cart(){
 
     
 
+=======
+>>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
     //** 5: ดึงข้อมูลทั้งหมด() */
     const getCarts = async () => {
         const apiUrl = "http://localhost:8080/carts";
@@ -192,6 +196,7 @@ function Cart(){
       }
   };
 
+<<<<<<< HEAD
 //   const getOrders = async () => {
 //     let res = await GetOrders();
 //         orders.Product = res.ID;
@@ -221,6 +226,8 @@ function Cart(){
     //         });
     // };
 
+=======
+>>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
     /*ดึงข้อมูลทั้งหมด() */
     const getProducts = async () => {
         const apiUrl = "http://localhost:8080/products";

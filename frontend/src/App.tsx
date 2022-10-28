@@ -36,7 +36,10 @@ import Cart from "./components/Cart";
 import Receipts from "./components/Receipts";
 import ReceiptCreate from "./components/ReceiptCreate";
 import SignIn from "./components/SignIn";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
 
 
 const drawerWidth = 240;
@@ -96,9 +99,14 @@ const menu = [
   { name: "Member", icon: <PeopleIcon />, path: "/members" },
   { name: "Product", icon: <WidgetsIcon />, path: "/products" },
   { name: "Stock", icon: <WarehouseIcon />, path: "/stocks" },
+<<<<<<< HEAD
   { name: "Cart", icon: <AddShoppingCartIcon />, path: "/cart" },
   { name: "Build Receipt", icon: <ReceiptIcon />, path: "/receipt/create" },
   
+=======
+  { name: "Cart", icon: <AddShoppingCartIcon />, path: "/cart" },  { name: "Receipt Management", icon: <ReceiptIcon />, path: "/receipt/create" },
+  //{ name: "Receipt records", icon: <FileCopyIcon />, path: "/receipts" },
+>>>>>>> 50746ec6604384543ab404eb185ac057ae85b15b
 ];
 
 function App() {
