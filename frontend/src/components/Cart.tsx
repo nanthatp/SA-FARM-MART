@@ -47,7 +47,8 @@ function Cart() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
 
-  
+
+
   const handleChange = (event: any) => {
     setTelphone(event.target.value)
   }
@@ -89,9 +90,10 @@ function Cart() {
       EmpoyeeID: employee?.ID,
       Telephone: telephone,
       Product: product3[0]
-  
+
     };
-    console.log("Data order : ", data_order);
+    // const dataT = JSON.stringify(data_order)
+    // console.log("Data order : ", dataT);
 
     const apiUrl = "http://localhost:8080";
 
@@ -112,11 +114,11 @@ function Cart() {
       },
       body: JSON.stringify(data_order),
     };
-
+    
+    console.log("Before upload : " , requestOptions_order.body);
     fetch(`${apiUrl}/orders`, requestOptions_order)
       .then((response) => response.json())
       .then((res) => {
-        console.log("Before upload : ", res.data);
         if (res.data) {
           setSuccess(true)
         } else {
@@ -193,7 +195,7 @@ function Cart() {
     // console.log("Empoyee : ", value.nativeEvent.data);
     setEmpoyeeID(value.nativeEvent.data);
   }
-
+  // console.log("members : ", carts);
   return (
     <Container maxWidth="md">
       <Snackbar
@@ -246,7 +248,7 @@ function Cart() {
                 id="idtel"
                 label="Telephone Number"
                 native
-                value={carts.MemberID + ""}
+                value={carts.EmployeeID + ""}
                 onChange={handleChange}
                 inputProps={{
                   name: "MemberID",
@@ -272,7 +274,7 @@ function Cart() {
                 onChange={handleChangeProduct}
                 getOptionLabel={(option: any) =>
                   `${option.Product_name}`
-                } 
+                }
                 renderInput={(params) => <TextField {...params} label="Product " />}
                 renderOption={(props: any, option: any) => {
                   return (
