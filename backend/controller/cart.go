@@ -69,17 +69,6 @@ func ListCarts(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": carts})
 }
 
-// func LisReceipts(c *gin.Context) { // ดึงข้อมูลทุกอย่างใน dispensation
-// 	var carts []entity.Cart
-
-// 	if err := entity.DB().Preload("Member").Raw("SELECT * FROM (SELECT * FROM carts INNER JOIN carts ORDER BY id DESC) AS x GROUP BY member_id ").Find(&carts).Error; err != nil {
-// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-// 		return
-// 	}
-
-// 	c.JSON(http.StatusOK, gin.H{"data": carts})
-// }
-
 // DELETE /carts/:id
 func DeleteCarts(c *gin.Context) {
 	id := c.Param("id")

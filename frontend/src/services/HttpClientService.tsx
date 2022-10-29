@@ -146,28 +146,6 @@ async function GetStocks() {
   return res;
 }
 
-// async function GetCarts() {
-//   const requestOptions = {
-//     method: "GET",
-//     headers: {
-//       Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       "Content-Type": "application/json",
-//     },
-//   };
-
-//   let res = await fetch(`${apiUrl}/carts`, requestOptions)
-//     .then((response) => response.json())
-//     .then((res) => {
-//       if (res.data) {
-//         return res.data;
-//       } else {
-//         return false;
-//       }
-//     });
-
-//   return res;
-// }
-
 async function GetReceipts() {
   const requestOptions = {
     method: "GET",
@@ -189,7 +167,6 @@ async function GetReceipts() {
 
   return res;
 }
-
 
 async function GetPaymenttypes() {
   const requestOptions = {
@@ -390,27 +367,6 @@ async function GetOrders() {
   return res;
 }
 
-
-// async function CreateReceipt(data: ReceiptInterface) {
-//   const requestOptions = {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(data),
-//   };
-
-//   let res = await fetch(`${apiUrl}/receipts`, requestOptions)
-//     .then((response) => response.json())
-//     .then((res) => {
-//       if (res.data) {
-//         return res.data;
-//       } else {
-//         return false;
-//       }
-//     });
-
-//   return res;
-// }
-
 async function Carts(data: CartInterface) {
   const requestOptions = {
     method: "POST",
@@ -485,16 +441,13 @@ async function Receipts(data: ReceiptInterface) {
 export {
   Login, GetEmployeeByEID,
   GetEmployees, 
-  // GetGenders,
   GetMembers, 
-  // GetProvinces, 
   Members,
   GetProducts, 
   Products,
   GetStocks, GetLot, GetShelfproduct, Stocks,
   GetReceipts, GetCarts, 
   GetPaymenttypes,
-  // CreateReceipt,
   Receipts,
   CreateEmployee, 
 

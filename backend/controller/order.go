@@ -8,12 +8,13 @@ import (
 )
 
 // POST /orders
-func Order(c *gin.Context) { // gin.Context มีรายละเอียดของ request, validates, จัดรูปแบบเป็น JSON
+func Order(c *gin.Context) {
 	var order entity.Order
 	var product entity.Product
 	var cart entity.Cart
 
-	if err := c.ShouldBindJSON(&order); err != nil { // ตรวจสอบว่า JSON ที่ผ่านเข้ามามีรูปแบบตรงกับที่กำหนดไว้ในDBหรือไม่
+	//ตรวจสอบ DB ว่ามีรูปแบบตามที่กำหนดมั๊ย
+	if err := c.ShouldBindJSON(&order); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -43,7 +44,7 @@ func Order(c *gin.Context) { // gin.Context มีรายละเอียด
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": od}) // respone ว่าผ่าน และส่งข้อมูลกลับไป
+	c.JSON(http.StatusOK, gin.H{"data": od}) //ส่งข้อมูลกลับไป
 }
 
 func GetOrders(c *gin.Context) {

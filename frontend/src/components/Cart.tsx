@@ -20,223 +20,181 @@ import { OrderInterface } from "../interfaces/IOrder";
 import { CartInterface } from "../interfaces/ICart";
 
 import {
-    GetEmployeeByEID,
-    GetMembers,
-    // GetProducts,
-    // GetCarts,
-    // //GetOrders,
-    // Carts,
-    // Orders,
-
-  } from "../services/HttpClientService";
+  GetEmployeeByEID,
+  GetMembers,
+} from "../services/HttpClientService";
 
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref
-  ) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Cart(){
-    const [employee, setEmployee] = useState<EmployeeInterface>();
-    const [members, setMembers] = useState<MemberInterface[]>([]);
-    const [products, setProducts] = useState<ProductInterface[]>([]);
-    const [Quantity, setQuantity] = React.useState<number | null>(null);
-    const [carts, setCarts] = React.useState<Partial<CartInterface>>({});
-    const [cartID, setcartID] = React.useState<number | null>(null);
-    const [orders, setOrders] = React.useState<Partial<OrderInterface>>({});
-     
-    const [success, setSuccess] = React.useState(false);
-    const [error, setError] = React.useState(false);
-    //const [lastcartID, setlastcartID] = React.useState<number | null>(null);
-    
+function Cart() {
+  const [employee, setEmployee] = useState<EmployeeInterface>();
+  const [members, setMembers] = useState<MemberInterface[]>([]);
+  const [products, setProducts] = useState<ProductInterface[]>([]);
+  const [Quantity, setQuantity] = useState<number | undefined>();
+  const [carts, setCarts] = useState<Partial<CartInterface>>({});
+  const [cartID, setcartID] = useState<number | null>(null);
+  const [orders, setOrders] = useState<Partial<OrderInterface>>({});
+  const [productID, setProductID] = useState<number>();
+  const [empoyeeID, setEmpoyeeID] = useState<number>();
+  const [telephone, setTelphone] = useState<number>();
 
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-    
-    const handleChangeProduct_Name = (event: any, value: any) => {
-        setOrders({ ...orders, ProductID: value?.ID }); 
-    };
-    
-    const handleChange = (event: SelectChangeEvent) => {
-        const name = event.target.name as keyof typeof carts;
-        setCarts({
-          ...carts,
-          [name]: event.target.value,
-        });
+  
+  const handleChange = (event: any) => {
+    setTelphone(event.target.value)
+  }
+
+  const handleChangeProduct = (value: any) => {
+    // console.log("Product ID : ", value.target.value);
+    setProductID(value.target.value)
+  }
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
     }
-    const handleClose = (
-      event?: React.SyntheticEvent | Event,
-      reason?: string
-    ) => {
-      if (reason === "clickaway") {
-        return;
-      }
-      setSuccess(false);
-      setError(false);
-    };
-
-    /* Insert */
-    async function submit() {
-        
-        const convertType = (data: string | number | undefined) => {
-            let val = typeof data === "string" ? parseInt(data) : data;
-            return val;
-        };
-
-        let data_cart = {
-            Employee_ID: Number(localStorage.getItem("uid")),
-            Telephone: carts.Telephone?? "",
-        };
-        let data_order = {
-            ProducID:convertType(orders?.ProductID),
-            Quantity: Quantity,
-            //Quantity:typeof orders?.Product_quantity ==="string"?parseInt(orders.Product_quantity):0,
-        };
-
-        const apiUrl = "http://localhost:8080";
-
-        const requestOptions_cart = {
-            method: "POST",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data_cart),
-        };
-
-        const requestOptions_order = {
-            method: "POST",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data_order),
-        };
-
-            // //ต้องใช้ await ไม่งั้นมันจะไปทำคำสั่งต่อไปเลยโดยไม่รอคำสั่งนี้ทำเสร็จ แล้วมันจะแจ้งว่าหา cartID ไม่เจอ */
-            // if( lastcartID!= lastcartID){ // หากค่าเท่ากันจะไม่บันทึกซ้ำอีกรอบ
-            //     // ตรวจสอบว่า cart ID และ quantity ได้ถูกเลือก หรือไม่ ถ้าไม่ถูกเลือกจะไม่ทำการ fetch และ
-            //     // พอ fetch order ก็จะแจ้ง error เพราะหา order ไม่เจอ เนื่องจากมันไม่ถุก create จากตรงนี้
-            //     if(data_order.Quantity && data_order.ProducID){ // หากเป็น null จะเป็นเท็จ
-            //         await fetch(`${apiUrl}/carts`, requestOptions_cart)
-            //             .then((response) => response.json())
-            //             .then((res) => {
-            //             if (res.data) {
-            //                 setlastcartID(cartID)
-            //                 setSuccess(true)
-            //             } else {
-            //                 setError(true)
-            //             }
-            //         });
-            //     }
-            // }
-        
-
-        fetch(`${apiUrl}/orders`, requestOptions_order)
-            .then((response) => response.json())
-            .then((res) => {
-                if (res.data) { 
-                    setSuccess(true)
-                } else {
-                    setError(true)
-                }
-            console.log("orders", orders)   
-            });
-    }
-    
-    //** 5: ดึงข้อมูลทั้งหมด() */
-    const getCarts = async () => {
-        const apiUrl = "http://localhost:8080/carts";
-        const requestOptions = {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        };
-       
-        fetch(apiUrl, requestOptions)
-            .then((response) => response.json())
-            .then((res) => {
-                if (res.data) {
-                    setcartID((res.data.at(-1).ID)+1); // ตรวจสอบเอาเฉพาะ cartID ล่าสุด
-                }else{
-                    setcartID(1);
-                }
-            });
-    };
-    
-    // Get Employee
-    const getEmployee = async () => {
-        let res = await GetEmployeeByEID();
-            carts.EmployeeID = res.ID;
-        if (res) {
-        setEmployee(res);
-        }
-    };
-
-    const getMembers = async () => {
-      let res = await GetMembers();
-          carts.MemberID = res.ID;
-      if (res) {
-      setMembers(res);
-      }
+    setSuccess(false);
+    setError(false);
   };
 
-//   const getOrders = async () => {
-//     let res = await GetOrders();
-//         orders.Product = res.ID;
-//     if (res) {
-//     setOrders(res);
-//     }
-// };
+  async function submit() {
 
 
-    
-
-    
-    //** 6: ดึงข้อมูลทั้งหมด() */
-    // const getMembers = async () => {
-    //     const apiUrl = "http://localhost:8080/members";
-    //     const requestOptions = {
-    //         method: "GET",
-    //         headers: { "Content-Type": "application/json" },
-    //     };
-       
-    //     fetch(apiUrl, requestOptions)
-    //         .then((response) => response.json())
-    //         .then((res) => {
-    //             if (res.data) {
-    //                 setMembers(res.data);
-    //             }
-    //         });
-    // };
-
-    /*ดึงข้อมูลทั้งหมด() */
-    const getProducts = async () => {
-        const apiUrl = "http://localhost:8080/products";
-        const requestOptions = {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        };
-       
-        fetch(apiUrl, requestOptions)
-            .then((response) => response.json())
-            .then((res) => {
-                if (res.data) {
-                    setProducts(res.data);
-                }
-            });
+    const convertType = (data: string | number | undefined) => {
+      let val = typeof data === "string" ? parseInt(data) : data;
+      return val;
     };
-    
-    React.useEffect(() => {
-        getCarts();
-        getMembers();
-        getEmployee();
-        getProducts();
-    }, []);
-    var productUnitArray = products.map((item: ProductInterface) => (item.Product_name));
 
+    let data_cart = {
+      Employee_ID: Number(localStorage.getItem("uid")),
+      Telephone: carts.Telephone ?? "",
+    };
+    // console.log(products);
 
-return (
+    let product3 = products.filter((e) => e.ID === productID)
+    let data_order = {
+      ProductID: productID,
+      Product_quantity: Number(Quantity),
+      EmpoyeeID: employee?.ID,
+      Telephone: telephone,
+      Product: product3[0]
+  
+    };
+    console.log("Data order : ", data_order);
+
+    const apiUrl = "http://localhost:8080";
+
+    const requestOptions_cart = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data_cart),
+    };
+
+    const requestOptions_order = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data_order),
+    };
+
+    fetch(`${apiUrl}/orders`, requestOptions_order)
+      .then((response) => response.json())
+      .then((res) => {
+        console.log("Before upload : ", res.data);
+        if (res.data) {
+          setSuccess(true)
+        } else {
+          setError(true)
+        }
+      });
+  }
+
+  //** 5: ดึงข้อมูลทั้งหมด() */
+  const getCarts = async () => {
+    const apiUrl = "http://localhost:8080/carts";
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    fetch(apiUrl, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          setcartID((res.data.at(-1).ID) + 1); // ตรวจสอบเอาเฉพาะ cartID ล่าสุด
+        } else {
+          setcartID(1);
+        }
+      });
+  };
+
+  // Get Employee
+  const getEmployee = async () => {
+    let res = await GetEmployeeByEID();
+    carts.EmployeeID = res.ID;
+    if (res) {
+      setEmployee(res);
+    }
+  };
+
+  const getMembers = async () => {
+    let res = await GetMembers();
+    carts.MemberID = res.ID;
+    if (res) {
+      setMembers(res);
+    }
+  };
+
+  const getProducts = async () => {
+    const apiUrl = "http://localhost:8080/products";
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+
+    fetch(apiUrl, requestOptions)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.data) {
+          setProducts(res.data);
+        }
+      });
+  };
+
+  React.useEffect(() => {
+    getCarts();
+    getMembers();
+    getEmployee();
+    getProducts();
+  }, []);
+
+  const handleChangeQuantity = (value: any) => {
+    // console.log("Quantity : ", value.nativeEvent.data);
+    setQuantity(value.nativeEvent.data)
+  }
+
+  const handleChangeEmpoyee = (value: any) => {
+    // console.log("Empoyee : ", value.nativeEvent.data);
+    setEmpoyeeID(value.nativeEvent.data);
+  }
+
+  return (
     <Container maxWidth="md">
       <Snackbar
         open={success}
@@ -245,7 +203,7 @@ return (
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleClose} severity="success">
-            Success!
+          Success!
         </Alert>
       </Snackbar>
       <Snackbar
@@ -281,96 +239,85 @@ return (
         <Grid container spacing={3} sx={{ padding: 2 }}>
           <Grid item xs={12}>
             <FormControl fullWidth >
-            <InputLabel id="InputLabeltel">Telephone number</InputLabel>      
-                <Select
-                  required
-                  labelId="labelIdtel"
-                  id="idtel"
-                  label="Telephone Number"
-                  native
-                  value={carts.MemberID + ""}
-                  onChange={handleChange}
-                  inputProps={{
-                    name: "MemberID",
-                  }}                
-                >
-                    <option aria-label="None" value=""></option>
-                    {members.map((item: MemberInterface) => (
-                        <option value={item.ID} key={item.ID}>
-                        {item.Telephone}
-                        </option>
-                    ))}
-                </Select>
+              <InputLabel id="InputLabeltel">Telephone number</InputLabel>
+              <Select
+                required
+                labelId="labelIdtel"
+                id="idtel"
+                label="Telephone Number"
+                native
+                value={carts.MemberID + ""}
+                onChange={handleChange}
+                inputProps={{
+                  name: "MemberID",
+                }}
+              >
+                <option aria-label="None" value=""></option>
+                {members.map((item: MemberInterface) => (
+                  <option value={item.ID} key={item.ID}>
+                    {item.Telephone}
+                  </option>
+                ))}
+              </Select>
             </FormControl>
           </Grid>
-
           <Grid item xs={6}>
             <FormControl fullWidth variant="outlined">
-            <Autocomplete
+              <Autocomplete
                 id="product"
                 options={products}
-          
-                sx={{ width: 420,paddingY: 2 }}
+                sx={{ paddingY: 2 }}
                 style={{ float: "right" }}
                 size="medium"
-                onChange={handleChangeProduct_Name}
-                getOptionLabel={(option: any) => 
-                    `${option.Product_name}`
-                } //filter value
+                onChange={handleChangeProduct}
+                getOptionLabel={(option: any) =>
+                  `${option.Product_name}`
+                } 
                 renderInput={(params) => <TextField {...params} label="Product " />}
                 renderOption={(props: any, option: any) => {
-                console.log("props :",props)
-                console.log("option :",option);
-                return (
+                  return (
                     <li
-                    {...props}
-                    value={`${option.ID}`}
-                    key={`${option.ID}`}
-                    >{`${option.Product_name}`}</li>
-                ); 
+                      {...props}
+                      value={option.ID}
+                      key={option.ID}
+                    >{option.Product_name}</li>
+                  );
                 }}
-            />
+              />
             </FormControl>
           </Grid>
 
           <Grid item xs={6} >
             <FormControl fullWidth variant="outlined" >
-            <TextField
+              <TextField
                 margin="normal"
                 required
-                // sx={{ paddingY: 4 }}
                 id="Product_quantity"
                 variant="outlined"
                 type="number"
-                size="medium"  
-                value={orders?.Product_quantity }
-                onChange={(event) => setQuantity(Number(event.target.value))}
+                size="medium"
+                value={orders?.Product_quantity}
+                onChange={handleChangeQuantity}
                 label="Quantity"
-            /> 
+              />
             </FormControl>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth variant="outlined">
-            <InputLabel id="demo-simple-select-label">Employee</InputLabel>      
-              <Select
-                native
-                labelId="demo-simple-select-label"
+              <TextField
+                margin="normal"
                 id="demo-simple-select"
-                label="Employee"                
-                value={carts.EmployeeID + ""}
-                onChange={handleChange}
+                label="Employee"
+                value={`${employee?.FirstName} ${employee?.FirstName}`}
+                onChange={handleChangeEmpoyee}
                 disabled
                 inputProps={{
                   name: "EmployeeID",
                 }}
-              >
-                <option value={employee?.ID} key={employee?.ID}>
-                  {employee?.FirstName} {employee?.LastName}
-                </option>    
-              </Select>
+              />
             </FormControl>
           </Grid>
-        
+
           <Grid item xs={12}>
             <Button
               style={{ float: "right" }}
